@@ -20,8 +20,7 @@ public class MicroEmprestimosClient {
         Communicator communicator = new Communicator("177.134.36.246", 17592);
         communicator.execute();
         
-        communicator.searchProjects(0, "Ana");
+        new WelcomeGUI(communicator).setVisible(true);
         
-        communicator.close();
     }
 }

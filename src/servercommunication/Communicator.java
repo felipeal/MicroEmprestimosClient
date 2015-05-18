@@ -23,6 +23,14 @@ public class Communicator {
     private int port;
     private Socket server;
     
+    public enum Mode {
+        TITLE,
+        DESCRIPTION,
+        REMAINING_AMOUNT,
+        ACHIEVED_AMOUNT,
+        EXPIRATION;
+    }
+    
     public Communicator (String host, int port) {
         this.host = host;
         this.port = port;
@@ -43,15 +51,31 @@ public class Communicator {
         server.close();
     }
     
-    public Map<Integer,String> searchProjects(int mode, String value) throws IOException {
+    public Map<Integer,String> searchProjects(Mode mode, String value) throws IOException {
         Map<Integer, String> result = new HashMap<>();
         
         PrintStream msgToServer = new PrintStream(this.server.getOutputStream());
         msgToServer.println("search");
         
         switch (mode) {
-            case 0://TROCAR PARA ENUM TITLE
+            case TITLE:
                 msgToServer.println("title");
+                break;
+            
+            case DESCRIPTION:
+                msgToServer.println("description");
+                break;
+            
+            case REMAINING_AMOUNT:
+                msgToServer.println("remainingAmount");
+                break;
+                
+            case ACHIEVED_AMOUNT:
+                msgToServer.println("achievedAmount");
+                break;
+                
+            case EXPIRATION:
+                msgToServer.println("expirationDate");
                 break;
             
             default:
@@ -72,4 +96,5 @@ public class Communicator {
         
         return result;
     }
+    
 }
