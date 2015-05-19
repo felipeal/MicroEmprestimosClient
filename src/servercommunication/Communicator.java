@@ -6,7 +6,6 @@
 package servercommunication;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -25,6 +24,7 @@ public class Communicator {
     
     public enum Mode {
         TITLE,
+        ENTERPRENEUR_NAME,
         DESCRIPTION,
         REMAINING_AMOUNT,
         ACHIEVED_AMOUNT,
@@ -51,7 +51,20 @@ public class Communicator {
         server.close();
     }
     
-    public Map<Integer,String> searchProjects(Mode mode, String value) throws IOException {
+    public void login(String username, String password) throws IOException, ServerException {
+        PrintStream msgToServer = new PrintStream(this.server.getOutputStream());
+        
+        msgToServer.println("login");
+        msgToServer.println(username);
+        msgToServer.println(password);
+        
+        Scanner msgFromServer = new Scanner(this.server.getInputStream());
+        
+        if (msgFromServer.nextLine().equals("exception"))
+            throw new ServerException(msgFromServer.nextLine());
+    }
+    
+    public Map<Integer,String> searchProjects(Mode mode, String value) throws IOException, ServerException {
         Map<Integer, String> result = new HashMap<>();
         
         PrintStream msgToServer = new PrintStream(this.server.getOutputStream());
@@ -61,7 +74,11 @@ public class Communicator {
             case TITLE:
                 msgToServer.println("title");
                 break;
-            
+               
+            case ENTERPRENEUR_NAME:
+                msgToServer.println("enterpreneurName");
+                break;
+                
             case DESCRIPTION:
                 msgToServer.println("description");
                 break;
@@ -87,6 +104,9 @@ public class Communicator {
         
         Scanner msgFromServer = new Scanner(this.server.getInputStream());
         String stringId = msgFromServer.nextLine();
+        if (stringId.equals("exception"))
+            throw new ServerException(msgFromServer.nextLine());
+        
         while (!stringId.equals("-1")) {
             //result.put(Integer.parseInt(stringId), msgFromServer.nextLine());
             System.out.println(stringId + ": " + msgFromServer.nextLine());
@@ -97,4 +117,17 @@ public class Communicator {
         return result;
     }
     
+    public void donateToProject(int projectId, float amount) throws IOException, ServerException {
+        PrintStream msgToServer = new PrintStream(this.server.getOutputStream());
+        
+        msgToServer.println("donate");
+        msgToServer.println(projectId);
+        msgToServer.println(amount);
+        
+        Scanner msgFromServer = new Scanner(this.server.getInputStream());
+        
+        if (msgFromServer.nextLine().equals("exception")) {
+            throw new ServerException(msgFromServer.nextLine());
+        }
+    }
 }
