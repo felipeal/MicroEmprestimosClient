@@ -18,7 +18,7 @@ public class MicroEmprestimosClient {
      */
     public static void main(String[] args) throws IOException {
         Communicator communicator = new Communicator("177.134.36.246", 17592);
-        //communicator.execute();
+        communicator.execute();
 		
 		// Set Windows look and feel
         try {

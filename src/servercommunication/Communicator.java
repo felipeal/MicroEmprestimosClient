@@ -55,13 +55,15 @@ public class Communicator {
         server.close();
     }
     
-    public void login(String username, String password) throws ServerException {
+    public String login(String username, String password) throws ServerException {
         msgToServer.println("login");
         msgToServer.println(username);
         msgToServer.println(password);
         
         if (msgFromServer.nextLine().equals("exception"))
             throw new ServerException(msgFromServer.nextLine());
+        
+        return msgFromServer.nextLine(); // Returns the credit amount
     }
     
     public Map<Integer,String> searchProjects(Mode mode, String value) throws ServerException {
@@ -115,23 +117,29 @@ public class Communicator {
         return result;
     }
     
-//    public String getProject(int projectId) throws ServerException, IOException {
-//        msgToServer.println("getProject");
-//        msgToServer.println(projectId);
-//        
-//        if (msgFromServer.nextLine().equals("exception"))
-//            throw new ServerException(msgFromServer.nextLine());
-//        
-//        
-//    }
+    public String getProject(int projectId) throws ServerException {
+        msgToServer.println("getProject");
+        msgToServer.println(projectId);
+        
+        if (msgFromServer.nextLine().equals("exception"))
+            throw new ServerException(msgFromServer.nextLine());
+        
+        StringBuffer bf = new StringBuffer();
+        bf.append("Title: ").append(msgFromServer.nextLine()).append("\nBy: ").append(msgFromServer.nextLine());
+        bf.append("\n\n").append(msgFromServer.nextLine());
+        bf.append("\n\nMinimum donation: ").append(msgFromServer.nextLine()).append("\nDonated amount: ").append(msgFromServer.nextLine());
+        bf.append("\nTarget value: ").append(msgFromServer.nextLine()).append("\n\nLimit date: ").append(msgFromServer.nextLine());
+        return new String(bf);
+    }
     
-    public void donateToProject(int projectId, float amount) throws ServerException {
+    public String donateToProject(int projectId, float amount) throws ServerException {
         msgToServer.println("donate");
         msgToServer.println(projectId);
         msgToServer.println(amount);
         
-        if (msgFromServer.nextLine().equals("exception")) {
+        if (msgFromServer.nextLine().equals("exception"))
             throw new ServerException(msgFromServer.nextLine());
-        }
+        
+        return msgFromServer.nextLine();
     }
 }
