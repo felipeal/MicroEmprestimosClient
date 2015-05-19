@@ -24,18 +24,20 @@ public class Communicator {
     private PrintStream msgToServer;
     private Scanner msgFromServer;
     
-    public enum Mode {
-        TITLE,
-        ENTERPRENEUR_NAME,
-        DESCRIPTION,
-        REMAINING_AMOUNT,
-        ACHIEVED_AMOUNT,
-        EXPIRATION;
-    }
+    private HashMap<Integer,String> searchStrings;
     
     public Communicator (String host, int port) {
         this.host = host;
         this.port = port;
+        
+        searchStrings = new HashMap<>();
+        searchStrings.put(0, "sujestions");
+        searchStrings.put(1, "title");
+        searchStrings.put(2, "enterpreneurName");
+        searchStrings.put(3, "locale");
+        searchStrings.put(4, "remainingAmount");
+        searchStrings.put(5, "achievedAmount");
+        searchStrings.put(6, "expirationDate");
     }
     
     public void execute() throws IOException {
@@ -66,40 +68,15 @@ public class Communicator {
         return msgFromServer.nextLine(); // Returns the credit amount
     }
     
-    public Map<Integer,String> searchProjects(Mode mode, String value) throws ServerException {
+    public Map<Integer,String> searchProjects(int mode, String value) throws ServerException {
         Map<Integer, String> result = new HashMap<>();
-        
+
         msgToServer.println("search");
         
-        switch (mode) {
-            case TITLE:
-                msgToServer.println("title");
-                break;
-               
-            case ENTERPRENEUR_NAME:
-                msgToServer.println("enterpreneurName");
-                break;
-                
-            case DESCRIPTION:
-                msgToServer.println("description");
-                break;
-            
-            case REMAINING_AMOUNT:
-                msgToServer.println("remainingAmount");
-                break;
-                
-            case ACHIEVED_AMOUNT:
-                msgToServer.println("achievedAmount");
-                break;
-                
-            case EXPIRATION:
-                msgToServer.println("expirationDate");
-                break;
-            
-            default:
-                msgToServer.println("cancel");
-                return result;
-        }
+        if (searchStrings.containsKey(mode))
+            msgToServer.println(searchStrings.get(mode));
+        else
+            msgToServer.println("cancel");
         
         msgToServer.println(value);
         
