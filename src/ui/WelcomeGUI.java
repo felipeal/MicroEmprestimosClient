@@ -5,7 +5,6 @@
  */
 package ui;
 
-import java.io.IOException;
 import servercommunication.Communicator;
 
 /**
@@ -14,16 +13,32 @@ import servercommunication.Communicator;
  */
 public class WelcomeGUI extends javax.swing.JFrame {
 
-    private Communicator communicator;
+    private final Communicator communicator;
 
     /**
      * Creates new form Welcome
+	 * @param communicator
      */
     public WelcomeGUI(Communicator communicator) {
         this.communicator = communicator;
         initComponents();
+		clearWarnLabels();
     }
-
+	
+	private void clearWarnLabels() {
+		jLabelWarnID.setText("");
+		jLabelWarnPassword.setText("");
+		jLabelWarnFullName.setText("");
+		jLabelWarnLocale.setText("");
+	}
+	
+	private void clearInputFields() {
+		jTextFieldID.setText("");
+		jPasswordField.setText("");
+		jTextFieldFullName.setText("");
+		jTextFieldLocale.setText("");
+	}
+	
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,51 +48,68 @@ public class WelcomeGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jButtonLogDon = new javax.swing.JButton();
+        jButtonRegDon = new javax.swing.JButton();
+        jButtonLogEntpr = new javax.swing.JButton();
+        jButtonRegEntpr = new javax.swing.JButton();
+        jButtonLogAdmn = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
+        jTextFieldID = new javax.swing.JTextField();
+        jLabelID = new javax.swing.JLabel();
+        jLabelPassword = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
+        jTextFieldFullName = new javax.swing.JTextField();
+        jTextFieldLocale = new javax.swing.JTextField();
+        jLabelFullName = new javax.swing.JLabel();
+        jLabelLocale = new javax.swing.JLabel();
+        jLabelRegister = new javax.swing.JLabel();
+        jLabelWarnID = new javax.swing.JLabel();
+        jLabelWarnPassword = new javax.swing.JLabel();
+        jLabelWarnFullName = new javax.swing.JLabel();
+        jLabelWarnLocale = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Log as Donor");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLogDon.setText("Log as Donator");
+        jButtonLogDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonLogDonActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Register as Donor");
+        jButtonRegDon.setText("Register as Donator");
 
-        jButton3.setText("Log as Enterpreneur");
+        jButtonLogEntpr.setText("Log as Enterpreneur");
+        jButtonLogEntpr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogEntprActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Register as Enterpreneur");
+        jButtonRegEntpr.setText("Register as Enterpreneur");
 
-        jButton5.setText("Log as Administrator");
+        jButtonLogAdmn.setText("Log as Administrator");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabel1.setText("MicroEmprestimos");
+        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        jLabelTitulo.setText("MicroEmprestimos");
 
-        jLabel2.setText("ID");
+        jLabelID.setText("ID");
 
-        jLabel3.setText("Password");
+        jLabelPassword.setText("Password");
 
-        jLabel4.setText("Full Name");
+        jLabelFullName.setText("Full Name");
 
-        jLabel5.setText("Locale");
+        jLabelLocale.setText("Locale");
 
-        jLabel6.setText("(fill in all 4 fields)");
+        jLabelRegister.setText("(fill in all 4 fields)");
+
+        jLabelWarnID.setText("jLabel1");
+
+        jLabelWarnPassword.setText("jLabel2");
+
+        jLabelWarnFullName.setText("jLabel3");
+
+        jLabelWarnLocale.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,41 +119,47 @@ public class WelcomeGUI extends javax.swing.JFrame {
                 .addContainerGap(264, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(jLabelTitulo)
                         .addGap(49, 49, 49))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
+                                    .addComponent(jLabelPassword)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
+                                    .addComponent(jLabelID)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonLogDon, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jButtonLogEntpr, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGap(18, 18, 18)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButtonLogAdmn, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelWarnID)
+                                .addComponent(jLabelWarnPassword)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(107, 107, 107)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
+                                .addComponent(jLabelFullName)
+                                .addComponent(jLabelLocale))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jTextField3)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(171, 171, 171)))
+                                .addComponent(jTextFieldLocale)
+                                .addComponent(jTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelWarnFullName)
+                                .addComponent(jLabelWarnLocale))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonRegDon, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
+                        .addComponent(jLabelRegister)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)
+                        .addComponent(jButtonRegEntpr)
                         .addGap(42, 42, 42)))
                 .addGap(240, 240, 240))
         );
@@ -129,59 +167,94 @@ public class WelcomeGUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addComponent(jLabel1)
+                .addComponent(jLabelTitulo)
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelID)
+                    .addComponent(jLabelWarnID))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPassword)
+                    .addComponent(jLabelWarnPassword))
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton5))
+                    .addComponent(jButtonLogDon)
+                    .addComponent(jButtonLogEntpr)
+                    .addComponent(jButtonLogAdmn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jTextFieldFullName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelFullName)
+                    .addComponent(jLabelWarnFullName))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(jTextFieldLocale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelLocale)
+                    .addComponent(jLabelWarnLocale))
                 .addGap(81, 81, 81)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4)
-                    .addComponent(jLabel6))
+                    .addComponent(jButtonRegDon)
+                    .addComponent(jButtonRegEntpr)
+                    .addComponent(jLabelRegister))
                 .addGap(76, 76, 76))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonLogDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogDonActionPerformed
+        clearWarnLabels();
+		
+		if ("".equals(jTextFieldID.getText()))
+			jLabelWarnID.setText("This field is required!");
+		else if (jPasswordField.getPassword().length == 0)
+			jLabelWarnPassword.setText("This field is required!");
+		else {//try {
+//				communicator.login(jTextFieldID.getText(),jPasswordField.getPassword());
+				new DonatorGUI(jTextFieldID.getText()).setVisible(true);
+				clearInputFields();
+//			} catch (LoginException e) {
+//				
+			}
+    }//GEN-LAST:event_jButtonLogDonActionPerformed
 
-    
+    private void jButtonLogEntprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogEntprActionPerformed
+        clearWarnLabels();
+		
+		if ("".equals(jTextFieldID.getText()))
+			jLabelWarnID.setText("This field is required!");
+		else if (jPasswordField.getPassword().length == 0)
+			jLabelWarnPassword.setText("This field is required!");
+		else {//try {
+//				communicator.login(jTextFieldID.getText(),jPasswordField.getPassword());
+				new EnterpreneurGUI(jTextFieldID.getText()).setVisible(true);
+				clearInputFields();
+//			} catch (LoginException e) {
+//				
+			}
+    }//GEN-LAST:event_jButtonLogEntprActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JButton jButtonLogAdmn;
+    private javax.swing.JButton jButtonLogDon;
+    private javax.swing.JButton jButtonLogEntpr;
+    private javax.swing.JButton jButtonRegDon;
+    private javax.swing.JButton jButtonRegEntpr;
+    private javax.swing.JLabel jLabelFullName;
+    private javax.swing.JLabel jLabelID;
+    private javax.swing.JLabel jLabelLocale;
+    private javax.swing.JLabel jLabelPassword;
+    private javax.swing.JLabel jLabelRegister;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelWarnFullName;
+    private javax.swing.JLabel jLabelWarnID;
+    private javax.swing.JLabel jLabelWarnLocale;
+    private javax.swing.JLabel jLabelWarnPassword;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JTextField jTextFieldFullName;
+    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldLocale;
     // End of variables declaration//GEN-END:variables
 }

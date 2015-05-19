@@ -5,6 +5,8 @@
  */
 package ui;
 
+import java.awt.event.WindowEvent;
+
 /**
  *
  * @author Giovani
@@ -13,9 +15,11 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 
 	/**
 	 * Creates new form EnterpreneurGUI
+	 * @param user
 	 */
-	public EnterpreneurGUI() {
+	public EnterpreneurGUI(String user) {
 		initComponents();
+		jLabelLoggedAs.setText("Logged as ".concat(user));
 	}
 
 	/**
@@ -27,60 +31,68 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jProgressBar2 = new javax.swing.JProgressBar();
+        jLabelTitulo = new javax.swing.JLabel();
+        jLabelLoggedAs = new javax.swing.JLabel();
+        jScrollPaneProjectDescription = new javax.swing.JScrollPane();
+        jTextAreaProjectDescription = new javax.swing.JTextArea();
+        jLabelCurrentProject = new javax.swing.JLabel();
+        jLabelPastProjects = new javax.swing.JLabel();
+        jScrollPanePastProjects = new javax.swing.JScrollPane();
+        jListPastProjects = new javax.swing.JList();
+        jButtonNewOrEdit = new javax.swing.JButton();
+        jTextFieldCurrentProjectName = new javax.swing.JTextField();
+        jButtonSaveEdit = new javax.swing.JButton();
+        jButtonDeleteCurrentProject = new javax.swing.JButton();
+        jTextFieldCurrentProjectAmount = new javax.swing.JTextField();
+        jProgressBarAmount = new javax.swing.JProgressBar();
+        jButtonPayMonth = new javax.swing.JButton();
+        jButtonWithdraw = new javax.swing.JButton();
+        jProgressBarRepay = new javax.swing.JProgressBar();
+        jButtonLogout = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("MicroEmprestimos");
+        jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelTitulo.setText("MicroEmprestimos");
 
-        jLabel2.setText("Logged as Fulano");
+        jLabelLoggedAs.setText("Logged as FulanoNomeComprido");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Editar descrição do atual / visualizar descrições dos antigos");
-        jScrollPane1.setViewportView(jTextArea1);
+        jTextAreaProjectDescription.setColumns(20);
+        jTextAreaProjectDescription.setRows(5);
+        jTextAreaProjectDescription.setText("Editar descrição do atual / visualizar descrições dos antigos");
+        jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
 
-        jLabel3.setText("Current Project:");
+        jLabelCurrentProject.setText("Current Project:");
 
-        jLabel4.setText("Past Projects");
+        jLabelPastProjects.setText("Past Projects");
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
+        jListPastProjects.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Past Project 1", "Past Project 2" };
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
-        jScrollPane2.setViewportView(jList1);
+        jScrollPanePastProjects.setViewportView(jListPastProjects);
 
-        jButton1.setText("New");
+        jButtonNewOrEdit.setText("New/Edit");
 
-        jTextField1.setText("Nome do Projeto");
+        jTextFieldCurrentProjectName.setText("Nome do Projeto");
 
-        jButton2.setText("Save Edit");
+        jButtonSaveEdit.setText("Save Edit");
 
-        jButton3.setText("Delete");
+        jButtonDeleteCurrentProject.setText("Delete");
 
-        jTextField2.setText("Quantidade requisitada");
+        jTextFieldCurrentProjectAmount.setText("Quantidade requisitada");
 
-        jButton4.setText("Pagar mensalidade");
+        jButtonPayMonth.setText("Pagar mensalidade");
 
-        jButton5.setText("Retirar dinheiro!");
+        jButtonWithdraw.setText("Retirar dinheiro!");
+
+        jButtonLogout.setText("Logout");
+        jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonLogoutActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -90,31 +102,35 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jProgressBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
+                                    .addComponent(jLabelCurrentProject)
+                                    .addComponent(jLabelPastProjects))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jButtonNewOrEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonSaveEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jButtonDeleteCurrentProject, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldCurrentProjectAmount, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jProgressBarAmount, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonWithdraw, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jProgressBarRepay, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonPayMonth, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldCurrentProjectName, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPanePastProjects))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                        .addComponent(jScrollPaneProjectDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelLoggedAs)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonLogout)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -122,92 +138,63 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 575, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTitulo)
+                    .addComponent(jLabelLoggedAs)
+                    .addComponent(jButtonLogout))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelCurrentProject)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextFieldCurrentProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldCurrentProjectAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2))
+                            .addComponent(jButtonDeleteCurrentProject)
+                            .addComponent(jButtonNewOrEdit)
+                            .addComponent(jButtonSaveEdit))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jProgressBarAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
+                        .addComponent(jButtonWithdraw)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jProgressBarRepay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4)
+                        .addComponent(jButtonPayMonth)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel4)
+                        .addComponent(jLabelPastProjects)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPanePastProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPaneProjectDescription))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(EnterpreneurGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(EnterpreneurGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(EnterpreneurGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(EnterpreneurGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-        //</editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new EnterpreneurGUI().setVisible(true);
-			}
-		});
-	}
+    private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+    }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JList jList1;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton jButtonDeleteCurrentProject;
+    private javax.swing.JButton jButtonLogout;
+    private javax.swing.JButton jButtonNewOrEdit;
+    private javax.swing.JButton jButtonPayMonth;
+    private javax.swing.JButton jButtonSaveEdit;
+    private javax.swing.JButton jButtonWithdraw;
+    private javax.swing.JLabel jLabelCurrentProject;
+    private javax.swing.JLabel jLabelLoggedAs;
+    private javax.swing.JLabel jLabelPastProjects;
+    private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JList jListPastProjects;
+    private javax.swing.JProgressBar jProgressBarAmount;
+    private javax.swing.JProgressBar jProgressBarRepay;
+    private javax.swing.JScrollPane jScrollPanePastProjects;
+    private javax.swing.JScrollPane jScrollPaneProjectDescription;
+    private javax.swing.JTextArea jTextAreaProjectDescription;
+    private javax.swing.JTextField jTextFieldCurrentProjectAmount;
+    private javax.swing.JTextField jTextFieldCurrentProjectName;
     // End of variables declaration//GEN-END:variables
 }
