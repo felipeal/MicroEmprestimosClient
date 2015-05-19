@@ -26,12 +26,12 @@ public class Communicator {
     private PrintStream msgToServer;
     private Scanner msgFromServer;
     
-    class Pair {
+    public class Pair {
         
         public String title;
         public int id;
         
-        private Pair(String title, int id) {
+        public Pair(String title, int id) {
             this.title = title;
             this.id = id;
         }
@@ -81,8 +81,8 @@ public class Communicator {
         return msgFromServer.nextLine(); // Returns the credit amount
     }
     
-    public ArrayList searchProjects(int mode, String value) throws ServerException {
-        ArrayList result = new ArrayList();
+    public ArrayList<Pair> searchProjects(int mode, String value) throws ServerException {
+        ArrayList<Pair> result = new ArrayList<Pair>();
         
         msgToServer.println("search");
         
