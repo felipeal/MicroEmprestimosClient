@@ -152,6 +152,10 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jComboBoxSearchMode" pref="174" max="32767" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="jButtonSearch" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -168,7 +172,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jTextFieldSearchParameter" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPaneSearchResults" pref="393" max="32767" attributes="0"/>
+                      <Component id="jButtonSearch" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPaneSearchResults" pref="364" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -190,22 +196,30 @@
                         <StringItem index="1" value="Suggestion 2"/>
                       </StringArray>
                     </Property>
+                    <Property name="selectionMode" type="int" value="0"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="jListSearchResultsValueChanged"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
             <Component class="javax.swing.JTextField" name="jTextFieldSearchParameter">
+              <Events>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldSearchParameterKeyTyped"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBoxSearchMode">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
+                  <StringArray count="7">
                     <StringItem index="0" value="Suggestions"/>
-                    <StringItem index="1" value="Enterpreneur name"/>
-                    <StringItem index="2" value="Locale"/>
-                    <StringItem index="3" value="Remaining amount"/>
-                    <StringItem index="4" value="Achieved amount"/>
-                    <StringItem index="5" value="Expiration date"/>
+                    <StringItem index="1" value="Project Title"/>
+                    <StringItem index="2" value="Enterpreneur name"/>
+                    <StringItem index="3" value="Locale"/>
+                    <StringItem index="4" value="Remaining amount"/>
+                    <StringItem index="5" value="Achieved amount"/>
+                    <StringItem index="6" value="Expiration date"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -214,6 +228,14 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Search Mode:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButtonSearch">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Search"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSearchActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -279,6 +301,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Donate to current project!"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDonateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldDonateAmount">
     </Component>

@@ -5,7 +5,9 @@
  */
 package ui;
 
+import java.util.Arrays;
 import servercommunication.Communicator;
+import servercommunication.ServerException;
 
 /**
  *
@@ -211,12 +213,12 @@ public class WelcomeGUI extends javax.swing.JFrame {
 			jLabelWarnID.setText("This field is required!");
 		else if (jPasswordField.getPassword().length == 0)
 			jLabelWarnPassword.setText("This field is required!");
-		else {//try {
-//				communicator.login(jTextFieldID.getText(),jPasswordField.getPassword());
-				new DonatorGUI(jTextFieldID.getText()).setVisible(true);
+		else try {
+				String credits = communicator.login(jTextFieldID.getText(),Arrays.toString(jPasswordField.getPassword()));
+				new DonatorGUI(communicator,jTextFieldID.getText(),credits).setVisible(true);
 				clearInputFields();
-//			} catch (LoginException e) {
-//				
+			} catch (ServerException e) {
+				jLabelWarnID.setText("Invalid ID and Password combination!");
 			}
     }//GEN-LAST:event_jButtonLogDonActionPerformed
 
@@ -227,12 +229,12 @@ public class WelcomeGUI extends javax.swing.JFrame {
 			jLabelWarnID.setText("This field is required!");
 		else if (jPasswordField.getPassword().length == 0)
 			jLabelWarnPassword.setText("This field is required!");
-		else {//try {
-//				communicator.login(jTextFieldID.getText(),jPasswordField.getPassword());
-				new EnterpreneurGUI(jTextFieldID.getText()).setVisible(true);
+		else try {
+				communicator.login(jTextFieldID.getText(),Arrays.toString(jPasswordField.getPassword()));
+				new EnterpreneurGUI(communicator,jTextFieldID.getText()).setVisible(true);
 				clearInputFields();
-//			} catch (LoginException e) {
-//				
+			} catch (ServerException e) {
+				jLabelWarnID.setText("Invalid ID and Password combination!");
 			}
     }//GEN-LAST:event_jButtonLogEntprActionPerformed
 

@@ -6,18 +6,23 @@
 package ui;
 
 import java.awt.event.WindowEvent;
+import servercommunication.Communicator;
 
 /**
  *
  * @author Giovani
  */
 public class EnterpreneurGUI extends javax.swing.JFrame {
-
+	
+	private final Communicator communicator;
+	
 	/**
 	 * Creates new form EnterpreneurGUI
+	 * @param communicator
 	 * @param user
 	 */
-	public EnterpreneurGUI(String user) {
+	public EnterpreneurGUI(Communicator communicator, String user) {
+		this.communicator = communicator;
 		initComponents();
 		jLabelLoggedAs.setText("Logged as ".concat(user));
 	}

@@ -6,20 +6,30 @@
 package ui;
 
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import servercommunication.Communicator;
+import servercommunication.Communicator.Pair;
+import servercommunication.ServerException;
 
 /**
  *
  * @author Giovani
  */
 public class DonatorGUI extends javax.swing.JFrame {
-
+	
+	private final Communicator communicator;
+	
 	/**
 	 * Creates new form DonorGUI
+	 * @param communicator
 	 * @param user
+	 * @param credits
 	 */
-	public DonatorGUI(String user) {
+	public DonatorGUI(Communicator communicator, String user, String credits) {
+		this.communicator = communicator;
 		initComponents();
 		jLabelLoggedAs.setText("Logged as ".concat(user));
+		jLabelCredits.setText("Credits: ".concat(credits));
 	}
 
 	/**
@@ -44,6 +54,7 @@ public class DonatorGUI extends javax.swing.JFrame {
         jTextFieldSearchParameter = new javax.swing.JTextField();
         jComboBoxSearchMode = new javax.swing.JComboBox();
         jLabelSearchMode = new javax.swing.JLabel();
+        jButtonSearch = new javax.swing.JButton();
         jPanelDonateHistory = new javax.swing.JPanel();
         jScrollPaneDonateHistory = new javax.swing.JScrollPane();
         jListDonateHistory = new javax.swing.JList();
@@ -73,11 +84,30 @@ public class DonatorGUI extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        jListSearchResults.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListSearchResults.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListSearchResultsValueChanged(evt);
+            }
+        });
         jScrollPaneSearchResults.setViewportView(jListSearchResults);
 
-        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suggestions", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
+        jTextFieldSearchParameter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchParameterKeyTyped(evt);
+            }
+        });
+
+        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suggestions", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
 
         jLabelSearchMode.setText("Search Mode:");
+
+        jButtonSearch.setText("Search");
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelSearchLayout = new javax.swing.GroupLayout(jPanelSearch);
         jPanelSearch.setLayout(jPanelSearchLayout);
@@ -91,7 +121,10 @@ public class DonatorGUI extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSearchLayout.createSequentialGroup()
                         .addComponent(jLabelSearchMode)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxSearchMode, 0, 174, Short.MAX_VALUE)))
+                        .addComponent(jComboBoxSearchMode, 0, 174, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSearchLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButtonSearch)))
                 .addContainerGap())
         );
         jPanelSearchLayout.setVerticalGroup(
@@ -104,7 +137,9 @@ public class DonatorGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addComponent(jButtonSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -139,6 +174,11 @@ public class DonatorGUI extends javax.swing.JFrame {
         jLabelDonate.setText("Donate amount:");
 
         jButtonDonate.setText("Donate to current project!");
+        jButtonDonate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDonateActionPerformed(evt);
+            }
+        });
 
         jButtonLogout.setText("Logout");
         jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -207,10 +247,39 @@ public class DonatorGUI extends javax.swing.JFrame {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
+    private void jTextFieldSearchParameterKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchParameterKeyTyped
+        // TODO: LEARN HOW THIS SHIT WORKS
+    }//GEN-LAST:event_jTextFieldSearchParameterKeyTyped
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+		// TODO add your handling code here: MANDAR MODO DE BUSCAR E PARÂMETRO, LISTAR OS RESULTADOS
+		//try {
+			//ArrayList Communicator.Pair projects;
+			//projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
+			//jListSearchResults.removeAll();
+			//for (Communicator.Pair project : projects) {
+			//	jListSearchResults.add(project.title);
+			//}
+			
+		//} catch (ServerException ex) {
+			// se não quer usar a interface como gente, morra motherfucker
+		//	this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		//}
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jListSearchResultsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSearchResultsValueChanged
+        // TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
+    }//GEN-LAST:event_jListSearchResultsValueChanged
+
+    private void jButtonDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonateActionPerformed
+        // TODO add your handling code here: POPUP DE CONFIRMAÇÃO => MANDAR DADOS PRA DONATE; ATUALIZAR CRÉDITOS SE TEVE SUCESSO
+    }//GEN-LAST:event_jButtonDonateActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonate;
     private javax.swing.JButton jButtonGetCredits;
     private javax.swing.JButton jButtonLogout;
+    private javax.swing.JButton jButtonSearch;
     private javax.swing.JComboBox jComboBoxSearchMode;
     private javax.swing.JLabel jLabelCredits;
     private javax.swing.JLabel jLabelDonate;
