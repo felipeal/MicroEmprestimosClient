@@ -5,10 +5,12 @@
  */
 package servercommunication;
 
+import java.awt.List;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -24,7 +26,18 @@ public class Communicator {
     private PrintStream msgToServer;
     private Scanner msgFromServer;
     
-    private HashMap<Integer,String> searchStrings;
+    class Pair {
+        
+        public String title;
+        public int id;
+        
+        private Pair(String title, int id) {
+            this.title = title;
+            this.id = id;
+        }
+    }
+    
+    private Map<Integer,String> searchStrings;
     
     public Communicator (String host, int port) {
         this.host = host;
@@ -68,9 +81,9 @@ public class Communicator {
         return msgFromServer.nextLine(); // Returns the credit amount
     }
     
-    public Map<Integer,String> searchProjects(int mode, String value) throws ServerException {
-        Map<Integer, String> result = new HashMap<>();
-
+    public ArrayList searchProjects(int mode, String value) throws ServerException {
+        ArrayList result = new ArrayList();
+        
         msgToServer.println("search");
         
         if (searchStrings.containsKey(mode))
@@ -85,8 +98,8 @@ public class Communicator {
             throw new ServerException(msgFromServer.nextLine());
         
         while (!stringId.equals("-1")) {
-            //result.put(Integer.parseInt(stringId), msgFromServer.nextLine());
-            System.out.println(stringId + ": " + msgFromServer.nextLine());
+            result.add(new Pair(msgFromServer.nextLine(), Integer.parseInt(stringId)));
+            //System.out.println(stringId + ": " + msgFromServer.nextLine());
             
             stringId = msgFromServer.nextLine();
         }
