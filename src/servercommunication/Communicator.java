@@ -18,9 +18,11 @@ import java.util.Scanner;
  * @author Igor
  */
 public class Communicator {
-    private String host;
-    private int port;
+    private final String host;
+    private final int port;
     private Socket server;
+    private PrintStream msgToServer;
+    private Scanner msgFromServer;
     
     public enum Mode {
         TITLE,
@@ -44,6 +46,8 @@ public class Communicator {
             System.out.println("Trying to connect to local server.");
             server = new Socket(InetAddress.getLocalHost().getHostAddress(), this.port);
         }
+        msgToServer = new PrintStream(this.server.getOutputStream());
+        msgFromServer = new Scanner(this.server.getInputStream());
         System.out.println("The client has connected to the server!");
     }
     
@@ -51,23 +55,18 @@ public class Communicator {
         server.close();
     }
     
-    public void login(String username, String password) throws IOException, ServerException {
-        PrintStream msgToServer = new PrintStream(this.server.getOutputStream());
-        
+    public void login(String username, String password) throws ServerException {
         msgToServer.println("login");
         msgToServer.println(username);
         msgToServer.println(password);
-        
-        Scanner msgFromServer = new Scanner(this.server.getInputStream());
         
         if (msgFromServer.nextLine().equals("exception"))
             throw new ServerException(msgFromServer.nextLine());
     }
     
-    public Map<Integer,String> searchProjects(Mode mode, String value) throws IOException, ServerException {
+    public Map<Integer,String> searchProjects(Mode mode, String value) throws ServerException {
         Map<Integer, String> result = new HashMap<>();
         
-        PrintStream msgToServer = new PrintStream(this.server.getOutputStream());
         msgToServer.println("search");
         
         switch (mode) {
@@ -102,7 +101,6 @@ public class Communicator {
         
         msgToServer.println(value);
         
-        Scanner msgFromServer = new Scanner(this.server.getInputStream());
         String stringId = msgFromServer.nextLine();
         if (stringId.equals("exception"))
             throw new ServerException(msgFromServer.nextLine());
@@ -117,14 +115,20 @@ public class Communicator {
         return result;
     }
     
-    public void donateToProject(int projectId, float amount) throws IOException, ServerException {
-        PrintStream msgToServer = new PrintStream(this.server.getOutputStream());
-        
+//    public String getProject(int projectId) throws ServerException, IOException {
+//        msgToServer.println("getProject");
+//        msgToServer.println(projectId);
+//        
+//        if (msgFromServer.nextLine().equals("exception"))
+//            throw new ServerException(msgFromServer.nextLine());
+//        
+//        
+//    }
+    
+    public void donateToProject(int projectId, float amount) throws ServerException {
         msgToServer.println("donate");
         msgToServer.println(projectId);
         msgToServer.println(amount);
-        
-        Scanner msgFromServer = new Scanner(this.server.getInputStream());
         
         if (msgFromServer.nextLine().equals("exception")) {
             throw new ServerException(msgFromServer.nextLine());
