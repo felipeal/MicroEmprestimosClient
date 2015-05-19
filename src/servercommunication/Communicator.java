@@ -54,13 +54,13 @@ public class Communicator {
     }
     
     public void execute() throws IOException {
-        try {
-            server = new Socket(this.host, this.port);
-        } catch (IOException e) {
-            System.out.println("Couldn't connect to external server: " + e.getMessage());
-            System.out.println("Trying to connect to local server.");
+//        try {
+//            server = new Socket(this.host, this.port);
+//        } catch (IOException e) {
+//            System.out.println("Couldn't connect to external server: " + e.getMessage());
+//            System.out.println("Trying to connect to local server.");
             server = new Socket(InetAddress.getLocalHost().getHostAddress(), this.port);
-        }
+//        }
         msgToServer = new PrintStream(this.server.getOutputStream());
         msgFromServer = new Scanner(this.server.getInputStream());
         System.out.println("The client has connected to the server!");
@@ -75,16 +75,21 @@ public class Communicator {
         msgToServer.println(username);
         msgToServer.println(password);
         
-        if (msgFromServer.nextLine().equals("exception"))
+        String retorno =  msgFromServer.nextLine();
+        System.out.println(retorno);
+        if (retorno.equals("exception"))
             throw new ServerException(msgFromServer.nextLine());
         
-        return msgFromServer.nextLine(); // Returns the credit amount
+        retorno = msgFromServer.nextLine();
+        System.out.println(retorno);
+        return retorno; // Returns the credit amount
     }
     
     public ArrayList<Pair> searchProjects(int mode, String value) throws ServerException {
         ArrayList<Pair> result = new ArrayList<Pair>();
         
         msgToServer.println("search");
+        System.out.println("Chamo o search: " + mode);
         
         if (searchStrings.containsKey(mode))
             msgToServer.println(searchStrings.get(mode));
@@ -98,11 +103,13 @@ public class Communicator {
             throw new ServerException(msgFromServer.nextLine());
         
         while (!stringId.equals("-1")) {
-            result.add(new Pair(msgFromServer.nextLine(), Integer.parseInt(stringId)));
-            //System.out.println(stringId + ": " + msgFromServer.nextLine());
+            String title = msgFromServer.nextLine();
+            result.add(new Pair(title, Integer.parseInt(stringId)));
+            System.out.println(stringId + ": " + title);
             
             stringId = msgFromServer.nextLine();
         }
+        System.out.println("lol");
         
         return result;
     }

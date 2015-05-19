@@ -7,6 +7,10 @@ package ui;
 
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 import servercommunication.Communicator;
 import servercommunication.Communicator.Pair;
 import servercommunication.ServerException;
@@ -18,6 +22,7 @@ import servercommunication.ServerException;
 public class DonatorGUI extends javax.swing.JFrame {
 	
 	private final Communicator communicator;
+        private ArrayList<Communicator.Pair> projects;
 	
 	/**
 	 * Creates new form DonorGUI
@@ -252,27 +257,52 @@ public class DonatorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSearchParameterKeyTyped
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-		// TODO add your handling code here: MANDAR MODO DE BUSCAR E PARÂMETRO, LISTAR OS RESULTADOS
-		//try {
-			//ArrayList Communicator.Pair projects;
-			//projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
-			//jListSearchResults.removeAll();
-			//for (Communicator.Pair project : projects) {
-			//	jListSearchResults.add(project.title);
-			//}
-			
-		//} catch (ServerException ex) {
-			// se não quer usar a interface como gente, morra motherfucker
-		//	this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-		//}
+        // TODO add your handling code here: MANDAR MODO DE BUSCAR E PARÂMETRO, LISTAR OS RESULTADOS
+        try {
+            projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
+            jListSearchResults.removeAll();
+            
+            DefaultListModel listModel = new DefaultListModel();
+            jListSearchResults.setModel(listModel);
+            for (Communicator.Pair project : projects) {
+                listModel.addElement(project.title);
+            }
+            jListSearchResults.validate();
+
+        } catch (ServerException ex) {
+            // se não quer usar a interface como gente, morra motherfucker
+            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        }
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jListSearchResultsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSearchResultsValueChanged
-        // TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
+            try {
+                // TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
+                if (jListSearchResults.getSelectedIndex() == -1)
+                    jTextAreaProjectDescription.setText("Selected project description");
+                else
+                    jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).id));
+            } catch (ServerException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
     }//GEN-LAST:event_jListSearchResultsValueChanged
 
     private void jButtonDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonateActionPerformed
         // TODO add your handling code here: POPUP DE CONFIRMAÇÃO => MANDAR DADOS PRA DONATE; ATUALIZAR CRÉDITOS SE TEVE SUCESSO
+        switch (JOptionPane.showConfirmDialog(null, "Donating " + jTextFieldDonateAmount.getText() + 
+                                              " to project " + jListSearchResults.getSelectedValue().toString() + 
+                                              ".\nConfirm?", "Confirm Donation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
+            case JOptionPane.YES_OPTION:
+        {
+            try {
+                jLabelCredits.setText("Credits: " + communicator.donateToProject(projects.get(jListSearchResults.getSelectedIndex()).id, Float.parseFloat(jTextFieldDonateAmount.getText())));
+                jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).id));
+            } catch (ServerException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }
+                break;
+        }
     }//GEN-LAST:event_jButtonDonateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
