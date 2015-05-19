@@ -137,7 +137,7 @@
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Editar descri&#xe7;&#xe3;o do atual / visualizar descri&#xe7;&#xf5;es dos antigos"/>
+            <Property name="text" type="java.lang.String" value="Edit current project&apos;s description/ visualize past project description"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -178,7 +178,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldCurrentProjectName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nome do Projeto"/>
+        <Property name="text" type="java.lang.String" value="Project Name"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonSaveEdit">
@@ -193,19 +193,19 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldCurrentProjectAmount">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade requisitada"/>
+        <Property name="text" type="java.lang.String" value="Requested Amount"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jProgressBarAmount">
     </Component>
     <Component class="javax.swing.JButton" name="jButtonPayMonth">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Pagar mensalidade"/>
+        <Property name="text" type="java.lang.String" value="Pay monthly fee"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonWithdraw">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Retirar dinheiro!"/>
+        <Property name="text" type="java.lang.String" value="Withdraw contributions!"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jProgressBarRepay">

@@ -59,7 +59,7 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 
         jTextAreaProjectDescription.setColumns(20);
         jTextAreaProjectDescription.setRows(5);
-        jTextAreaProjectDescription.setText("Editar descrição do atual / visualizar descrições dos antigos");
+        jTextAreaProjectDescription.setText("Edit current project's description/ visualize past project description");
         jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
 
         jLabelCurrentProject.setText("Current Project:");
@@ -75,17 +75,17 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 
         jButtonNewOrEdit.setText("New/Edit");
 
-        jTextFieldCurrentProjectName.setText("Nome do Projeto");
+        jTextFieldCurrentProjectName.setText("Project Name");
 
         jButtonSaveEdit.setText("Save Edit");
 
         jButtonDeleteCurrentProject.setText("Delete");
 
-        jTextFieldCurrentProjectAmount.setText("Quantidade requisitada");
+        jTextFieldCurrentProjectAmount.setText("Requested Amount");
 
-        jButtonPayMonth.setText("Pagar mensalidade");
+        jButtonPayMonth.setText("Pay monthly fee");
 
-        jButtonWithdraw.setText("Retirar dinheiro!");
+        jButtonWithdraw.setText("Withdraw contributions!");
 
         jButtonLogout.setText("Logout");
         jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
