@@ -5,6 +5,7 @@
  */
 package servercommunication;
 
+import java.awt.List;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
@@ -64,6 +65,10 @@ public class Communicator {
      */
     public String donateToProject(int projectId, float amount) throws ServerException {
         return new DonateToProjectCommunication(msgToServer, msgFromServer).donateToProject(projectId, amount);
+    }
+    
+    public ArrayList<Pair<String,Integer>> getOwnedProjects() throws ServerException {
+        return new SearchProjectCommunication(msgToServer, msgFromServer).getOwnedProjects();
     }
     
     public String getProject(int projectId) throws ServerException {

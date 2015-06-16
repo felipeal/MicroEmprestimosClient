@@ -63,8 +63,36 @@ public class SearchProjectCommunication {
         // Receive the id of the first project
         String stringId = msgFromServer.nextLine();
         
-        // When the id is equals -1 all results have been received
-        while (!stringId.equals("-1")) {
+        // When the id is equals end all results have been received
+        while (!stringId.equals("end")) {
+            // Receive the title of the project
+            String title = msgFromServer.nextLine();
+            // Add the pair to the result list
+            result.add(new Pair<>(title, Integer.parseInt(stringId)));
+            // Receive the next id
+            stringId = msgFromServer.nextLine();
+        }
+        
+        // Return the list of pairs
+        return result;
+    }
+    
+    public ArrayList<Pair<String,Integer>> getOwnedProjects() throws ServerException {
+        ArrayList<Pair<String,Integer>> result = new ArrayList<>();
+        
+        //Send the function
+        msgToServer.println("getOwnedProjects");
+        
+        // Check for exceptions
+        if (msgFromServer.nextLine().equals("exception")) {
+            throw new ServerException(msgFromServer.nextLine());
+        }
+        
+        // Receive the id of the first project
+        String stringId = msgFromServer.nextLine();
+        
+        // When the id is equals end all results have been received
+        while (!stringId.equals("end")) {
             // Receive the title of the project
             String title = msgFromServer.nextLine();
             // Add the pair to the result list
