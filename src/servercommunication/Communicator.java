@@ -26,20 +26,9 @@ public class Communicator {
     private PrintStream msgToServer;
     private Scanner msgFromServer;
     
-    private Map<Integer,String> searchStrings;
-    
     public Communicator (String host, int port) {
         this.host = host;
         this.port = port;
-        
-        searchStrings = new HashMap<>();
-        searchStrings.put(0, "sujestions");
-        searchStrings.put(1, "title");
-        searchStrings.put(2, "enterpreneurName");
-        searchStrings.put(3, "locale");
-        searchStrings.put(4, "remainingAmount");
-        searchStrings.put(5, "achievedAmount");
-        searchStrings.put(6, "expirationDate");
     }
     
     public void execute() throws IOException {
@@ -59,18 +48,6 @@ public class Communicator {
         server.close();
     }
     
-    private void login(String username, String password) throws ServerException {
-        // Send the username
-        msgToServer.println(username);
-        // Send the password
-        msgToServer.println(password);
-        
-        String message =  msgFromServer.nextLine();
-        System.out.println(message);
-        if (message.equals("exception"))
-            throw new ServerException(msgFromServer.nextLine());
-    }
-    
 //    public AdminLoginReturn loginDonator(String username, String password) throws ServerException {
 //        
 //    }
@@ -82,20 +59,7 @@ public class Communicator {
      * @throws ServerException 
      */
     public Pair<String,Float> loginDonator(String username, String password) throws ServerException {
-        // Send the login message
-        msgToServer.println("login");
-        // Send the role
-        msgToServer.println("donator");
-        // Try to login
-        login(username, password); // Throws an exception if it goes wrong
-        
-        // Receive donator's name
-        String name = msgFromServer.nextLine();
-        // Receive donator's amount
-        float amount = Float.parseFloat(msgFromServer.nextLine());
-        
-        Pair<String,Float> returnVariable = new Pair<>(name, amount);
-        return returnVariable;
+        return new LoginCommunication(msgToServer, msgFromServer).loginDonator(username, password);
     }
     /**
      * 
@@ -105,20 +69,14 @@ public class Communicator {
      * @throws ServerException 
      */
     public Pair<String,String> loginEntrepreneur(String username, String password) throws ServerException {
-        // Send the login message
-        msgToServer.println("login");
-        // Send the role
-        msgToServer.println("entrepreneur");
-        // Try to login
-        login(username, password); // Throws an exception if it goes wrong
-        
-        // Receive entrepreneur's name
-        String name = msgFromServer.nextLine();
-        // Receive entrepreneur's location
-        String location = msgFromServer.nextLine();
-        
-        Pair<String,String> returnVariable = new Pair<>(name, location);
-        return returnVariable;
+        return new LoginCommunication(msgToServer, msgFromServer).loginEntrepreneur(username, password);
+    }
+    
+    public void registerDonator(String username, String password, String name) throws ServerException {
+        new RegisterUserCommunication(msgToServer, msgFromServer).RegisterDonator(username, password, name);
+    }
+    public void registerEntrepreneur(String username, String password, String name, String location) throws ServerException {
+        new RegisterUserCommunication(msgToServer, msgFromServer).RegisterEntrepreneur(username, password, name, location);
     }
     
     /**
@@ -129,76 +87,21 @@ public class Communicator {
      * @throws ServerException 
      */
     public ArrayList<Pair<String,Integer>> searchProjects(int mode, String value) throws ServerException {
-        ArrayList<Pair<String,Integer>> result = new ArrayList<>();
-        
-        // Send the search message
-        msgToServer.println("search");
-        
-        // If the map searchStrings contains this mode of search, send the mode to the server
-        if (searchStrings.containsKey(mode))
-            // Send the search mode
-            msgToServer.println(searchStrings.get(mode));
-        else {
-            // Send a cancel message and end the function
-            msgToServer.println("cancel");
-            throw new ServerException("No such function.");
-        }
-        // Check for exceptions
-        if (msgFromServer.nextLine().equals("exception")) {
-            throw new ServerException(msgFromServer.nextLine());
-        }
-        
-        // Send the search value
-        msgToServer.println(value);
-        
-        // Receive the id of the first project
-        String stringId = msgFromServer.nextLine();
-        
-        // When the id is equals -1 all results have been received
-        while (!stringId.equals("-1")) {
-            // Receive the title of the project
-            String title = msgFromServer.nextLine();
-            // Add the pair to the result list
-            result.add(new Pair<>(title, Integer.parseInt(stringId)));
-            // Receive the next id
-            stringId = msgFromServer.nextLine();
-        }
-        
-        // Return the list of pairs
-        return result;
+        return new SearchProjectCommunication(msgToServer, msgFromServer).searchProjects(mode, value);
     }
     
     public String getProject(int projectId) throws ServerException {
-        // Send the getProject action
-        msgToServer.println("getProject");
-        // Send the project id
-        msgToServer.println(projectId);
-        
-        // Check for exceptions
-        if (msgFromServer.nextLine().equals("exception"))
-            throw new ServerException(msgFromServer.nextLine());
-        
-        StringBuffer bf = new StringBuffer();
-        // Receive the title and the entrepreneur's name
-        bf.append("Title: ").append(msgFromServer.nextLine()).append("\nBy: ").append(msgFromServer.nextLine());
-        // Receive the description
-        bf.append("\n\n").append(msgFromServer.nextLine());
-        // Receive the minimum donation amount and the donated amount
-        bf.append("\n\nMinimum donation: ").append(msgFromServer.nextLine()).append("\nDonated amount: ").append(msgFromServer.nextLine());
-        // Receive the target value and the limit date
-        bf.append("\nTarget value: ").append(msgFromServer.nextLine()).append("\n\nLimit date: ").append(msgFromServer.nextLine());
-        // Return the created string
-        return new String(bf);
+        return new SearchProjectCommunication(msgToServer, msgFromServer).getProject(projectId);
     }
     
+    /**
+     * 
+     * @param projectId
+     * @param amount
+     * @return the client's balance after the donation
+     * @throws ServerException 
+     */
     public String donateToProject(int projectId, float amount) throws ServerException {
-        msgToServer.println("donate");
-        msgToServer.println(projectId);
-        msgToServer.println(amount);
-        
-        if (msgFromServer.nextLine().equals("exception"))
-            throw new ServerException(msgFromServer.nextLine());
-        
-        return msgFromServer.nextLine();
+        return new DonateToProjectCommunication(msgToServer, msgFromServer).donateToProject(projectId, amount);
     }
 }
