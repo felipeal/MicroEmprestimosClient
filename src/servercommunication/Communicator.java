@@ -23,6 +23,7 @@ public class Communicator {
     private final String host;
     private final int port;
     private Socket server;
+    
     private PrintStream msgToServer;
     private Scanner msgFromServer;
     
@@ -46,6 +47,25 @@ public class Communicator {
     
     public void close() throws IOException {
         server.close();
+    }
+    
+    public void buyCredits(float amount) throws ServerException {
+        new BuyCreditsCommunication(msgToServer, msgFromServer).buyCredits(amount);
+    }
+    
+    /**
+     * 
+     * @param projectId
+     * @param amount
+     * @return the client's balance after the donation
+     * @throws ServerException 
+     */
+    public String donateToProject(int projectId, float amount) throws ServerException {
+        return new DonateToProjectCommunication(msgToServer, msgFromServer).donateToProject(projectId, amount);
+    }
+    
+    public String getProject(int projectId) throws ServerException {
+        return new SearchProjectCommunication(msgToServer, msgFromServer).getProject(projectId);
     }
     
 //    public AdminLoginReturn loginDonator(String username, String password) throws ServerException {
@@ -88,20 +108,5 @@ public class Communicator {
      */
     public ArrayList<Pair<String,Integer>> searchProjects(int mode, String value) throws ServerException {
         return new SearchProjectCommunication(msgToServer, msgFromServer).searchProjects(mode, value);
-    }
-    
-    public String getProject(int projectId) throws ServerException {
-        return new SearchProjectCommunication(msgToServer, msgFromServer).getProject(projectId);
-    }
-    
-    /**
-     * 
-     * @param projectId
-     * @param amount
-     * @return the client's balance after the donation
-     * @throws ServerException 
-     */
-    public String donateToProject(int projectId, float amount) throws ServerException {
-        return new DonateToProjectCommunication(msgToServer, msgFromServer).donateToProject(projectId, amount);
     }
 }
