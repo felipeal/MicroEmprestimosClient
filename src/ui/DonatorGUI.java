@@ -9,10 +9,10 @@ import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.Pair;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import servercommunication.Communicator;
-import servercommunication.Communicator.Pair;
 import servercommunication.ServerException;
 
 /**
@@ -22,7 +22,7 @@ import servercommunication.ServerException;
 public class DonatorGUI extends javax.swing.JFrame {
 	
 	private final Communicator communicator;
-        private ArrayList<Communicator.Pair> projects;
+        private ArrayList<Pair<String,Integer>> projects;
 	
 	/**
 	 * Creates new form DonorGUI
@@ -264,8 +264,8 @@ public class DonatorGUI extends javax.swing.JFrame {
             
             DefaultListModel listModel = new DefaultListModel();
             jListSearchResults.setModel(listModel);
-            for (Communicator.Pair project : projects) {
-                listModel.addElement(project.title);
+            for (Pair<String,Integer> project : projects) {
+                listModel.addElement(project.getKey());
             }
             jListSearchResults.validate();
 
@@ -281,7 +281,7 @@ public class DonatorGUI extends javax.swing.JFrame {
                 if (jListSearchResults.getSelectedIndex() == -1)
                     jTextAreaProjectDescription.setText("Selected project description");
                 else
-                    jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).id));
+                    jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
             } catch (ServerException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
@@ -295,8 +295,8 @@ public class DonatorGUI extends javax.swing.JFrame {
             case JOptionPane.YES_OPTION:
         {
             try {
-                jLabelCredits.setText("Credits: " + communicator.donateToProject(projects.get(jListSearchResults.getSelectedIndex()).id, Float.parseFloat(jTextFieldDonateAmount.getText())));
-                jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).id));
+                jLabelCredits.setText("Credits: " + communicator.donateToProject(projects.get(jListSearchResults.getSelectedIndex()).getValue(), Float.parseFloat(jTextFieldDonateAmount.getText())));
+                jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
             } catch (ServerException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
