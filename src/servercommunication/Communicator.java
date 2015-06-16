@@ -10,8 +10,6 @@ import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 import javafx.util.Pair;
 
@@ -51,6 +49,10 @@ public class Communicator {
     
     public void buyCredits(float amount) throws ServerException {
         new BuyCreditsCommunication(msgToServer, msgFromServer).buyCredits(amount);
+    }
+    
+    public void createProject(String title, String description, float minDonationValue, float target, String limitDate) throws ServerException {
+        new CreateProjectCommunication(msgToServer, msgFromServer).createProject(title, description, minDonationValue, target, limitDate);
     }
     
     /**

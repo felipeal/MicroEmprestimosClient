@@ -14,8 +14,8 @@ import java.util.Scanner;
  */
 public class RegisterUserCommunication {
     
-    private PrintStream msgToServer;
-    private Scanner msgFromServer;
+    private final PrintStream msgToServer;
+    private final Scanner msgFromServer;
     
     public RegisterUserCommunication(PrintStream msgToServer, Scanner msgFromServer) {
         this.msgToServer = msgToServer;

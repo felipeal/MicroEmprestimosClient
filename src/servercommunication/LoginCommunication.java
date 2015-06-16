@@ -15,8 +15,8 @@ import javafx.util.Pair;
  */
 public class LoginCommunication {
     
-    private PrintStream msgToServer;
-    private Scanner msgFromServer;
+    private final PrintStream msgToServer;
+    private final Scanner msgFromServer;
     
     public LoginCommunication(PrintStream msgToServer, Scanner msgFromServer) {
         this.msgToServer = msgToServer;

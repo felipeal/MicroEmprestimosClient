@@ -14,8 +14,8 @@ import java.util.Scanner;
  */
 public class DonateToProjectCommunication {
     
-    private PrintStream msgToServer;
-    private Scanner msgFromServer;
+    private final PrintStream msgToServer;
+    private final Scanner msgFromServer;
     
     public DonateToProjectCommunication(PrintStream msgToServer, Scanner msgFromServer) {
         this.msgToServer = msgToServer;

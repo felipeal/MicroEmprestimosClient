@@ -18,8 +18,8 @@ import javafx.util.Pair;
  */
 public class SearchProjectCommunication {
     
-    private PrintStream msgToServer;
-    private Scanner msgFromServer;
+    private final PrintStream msgToServer;
+    private final Scanner msgFromServer;
     
     private final Map<Integer,String> searchStrings;
     
