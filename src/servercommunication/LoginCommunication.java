@@ -19,6 +19,13 @@ public class LoginCommunication extends AbstractCommunication {
         super(msgToServer, msgFromServer);
     }
     
+    /**
+     * Communicates with the server to start a session as a donator.
+     * @param username
+     * @param password
+     * @return a pair containing the name and the balance amount of the client
+     * @throws ServerException 
+     */
     public Pair<String,Float> loginDonator(String username, String password) throws ServerException {
         // Send the login message
         msgToServer.println("login");
@@ -36,6 +43,13 @@ public class LoginCommunication extends AbstractCommunication {
         return returnVariable;
     }
     
+    /**
+     * Communicates with the server to start a session as a entrepreneur.
+     * @param username
+     * @param password
+     * @return a pair containing the name and location of the client
+     * @throws ServerException 
+     */
     public Pair<String,String> loginEntrepreneur(String username, String password) throws ServerException {
         // Send the login message
         msgToServer.println("login");

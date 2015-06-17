@@ -18,6 +18,15 @@ public class CreateProjectCommunication extends AbstractCommunication {
         super(msgToServer, msgFromServer);
     }
     
+    /**
+     * Communicates with the server to create a new project.
+     * @param title
+     * @param description
+     * @param minDonationValue
+     * @param target
+     * @param limitDate
+     * @throws ServerException 
+     */
     public void createProject(String title, String description, float minDonationValue, float target, String limitDate) throws ServerException {
         // Send the function
         msgToServer.println("createProject");

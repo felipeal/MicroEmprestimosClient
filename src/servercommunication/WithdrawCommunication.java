@@ -18,6 +18,11 @@ public class WithdrawCommunication extends AbstractCommunication {
         super(msgToServer, msgFromServer);
     }
     
+    /**
+     * Communicates with the server to withdraw the money from the project.
+     * @param projectId
+     * @throws ServerException 
+     */
     public void withdraw(int projectId) throws ServerException {
         // Send the function
         msgToServer.println("withdraw");

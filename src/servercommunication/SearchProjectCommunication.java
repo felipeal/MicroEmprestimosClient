@@ -33,6 +33,13 @@ public class SearchProjectCommunication extends AbstractCommunication {
         searchStrings.put(6, "expirationDate");
     }
     
+    /**
+     * Communicates with the server to make a project search.
+     * @param mode
+     * @param value
+     * @return the list of result projects
+     * @throws ServerException 
+     */
     public ArrayList<Pair<String,Integer>> searchProjects(int mode, String value) throws ServerException {
         ArrayList<Pair<String,Integer>> result = new ArrayList<>();
         
@@ -73,6 +80,11 @@ public class SearchProjectCommunication extends AbstractCommunication {
         return result;
     }
     
+    /**
+     * Communicates with the server to get the list of projects owned by the client.
+     * @return the list of projects owned by the client
+     * @throws ServerException 
+     */
     public ArrayList<Pair<String,Integer>> getOwnedProjects() throws ServerException {
         ArrayList<Pair<String,Integer>> result = new ArrayList<>();
         
@@ -101,6 +113,12 @@ public class SearchProjectCommunication extends AbstractCommunication {
         return result;
     }
     
+    /**
+     * Communicates with the server to get information about the project with the given id.
+     * @param projectId
+     * @return a String containing information about the project
+     * @throws ServerException 
+     */
     public String getProject(int projectId) throws ServerException {
         // Send the getProject action
         msgToServer.println("getProject");

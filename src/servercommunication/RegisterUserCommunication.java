@@ -18,6 +18,13 @@ public class RegisterUserCommunication extends AbstractCommunication {
         super(msgToServer, msgFromServer);
     }
     
+    /**
+     * Communicates with the server to register a new donator.
+     * @param login
+     * @param password
+     * @param name
+     * @throws ServerException 
+     */
     public void RegisterDonator(String login, String password, String name) throws ServerException {
         // Send function
         msgToServer.println("register");
@@ -42,6 +49,14 @@ public class RegisterUserCommunication extends AbstractCommunication {
         }
     }
     
+    /**
+     * Communicates with the server to register a new entrepreneur.
+     * @param login
+     * @param password
+     * @param name
+     * @param location
+     * @throws ServerException 
+     */
     public void RegisterEntrepreneur(String login, String password, String name, String location) throws ServerException {
         // Send function
         msgToServer.println("register");

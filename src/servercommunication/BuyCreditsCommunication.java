@@ -18,6 +18,11 @@ public class BuyCreditsCommunication extends AbstractCommunication {
         super(msgToServer, msgFromServer);
     }
     
+    /**
+     * Communicates with the server to add credits to the client's account
+     * @param amount
+     * @throws ServerException 
+     */
     public void buyCredits(float amount) throws ServerException {
         // Send function
         msgToServer.println("buyCredits");

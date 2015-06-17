@@ -18,6 +18,13 @@ public class DonateToProjectCommunication extends AbstractCommunication {
         super(msgToServer, msgFromServer);
     }
     
+    /**
+     * Communicates with the server to make a donation to the project with the given id.
+     * @param projectId
+     * @param amount
+     * @return the new balance of the client
+     * @throws ServerException 
+     */
     public String donateToProject(int projectId, float amount) throws ServerException {
         // Send donate function
         msgToServer.println("donate");
