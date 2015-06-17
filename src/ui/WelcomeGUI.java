@@ -95,7 +95,7 @@ public class WelcomeGUI extends javax.swing.JFrame {
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabelTitulo.setText("MicroEmprestimos");
 
-        jLabelID.setText("ID");
+        jLabelID.setText("Username");
 
         jLabelPassword.setText("Password");
 
@@ -105,13 +105,13 @@ public class WelcomeGUI extends javax.swing.JFrame {
 
         jLabelRegister.setText("(fill in all 4 fields)");
 
-        jLabelWarnID.setText("jLabel1");
+        jLabelWarnID.setText("tab4");
 
-        jLabelWarnPassword.setText("jLabel2");
+        jLabelWarnPassword.setText("melhor");
 
-        jLabelWarnFullName.setText("jLabel3");
+        jLabelWarnFullName.setText("identação");
 
-        jLabelWarnLocale.setText("jLabel4");
+        jLabelWarnLocale.setText("ever");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

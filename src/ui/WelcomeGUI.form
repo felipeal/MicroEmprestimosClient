@@ -177,7 +177,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ID"/>
+        <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelPassword">
@@ -208,22 +208,22 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelWarnID">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="text" type="java.lang.String" value="tab4"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelWarnPassword">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
+        <Property name="text" type="java.lang.String" value="melhor"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelWarnFullName">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel3"/>
+        <Property name="text" type="java.lang.String" value="identa&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelWarnLocale">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel4"/>
+        <Property name="text" type="java.lang.String" value="ever"/>
       </Properties>
     </Component>
   </SubComponents>

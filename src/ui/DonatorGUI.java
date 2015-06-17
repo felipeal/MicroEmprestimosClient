@@ -47,21 +47,16 @@ public class DonatorGUI extends javax.swing.JFrame {
         jButtonGetCredits = new javax.swing.JButton();
         jScrollPaneProjectDescription = new javax.swing.JScrollPane();
         jTextAreaProjectDescription = new javax.swing.JTextArea();
-        jTabbedPane = new javax.swing.JTabbedPane();
-        jPanelSearch = new javax.swing.JPanel();
-        jScrollPaneSearchResults = new javax.swing.JScrollPane();
-        jListSearchResults = new javax.swing.JList();
-        jTextFieldSearchParameter = new javax.swing.JTextField();
-        jComboBoxSearchMode = new javax.swing.JComboBox();
-        jLabelSearchMode = new javax.swing.JLabel();
-        jButtonSearch = new javax.swing.JButton();
-        jPanelDonateHistory = new javax.swing.JPanel();
-        jScrollPaneDonateHistory = new javax.swing.JScrollPane();
-        jListDonateHistory = new javax.swing.JList();
         jLabelDonate = new javax.swing.JLabel();
         jButtonDonate = new javax.swing.JButton();
         jTextFieldDonateAmount = new javax.swing.JTextField();
         jButtonLogout = new javax.swing.JButton();
+        jButtonSearch = new javax.swing.JButton();
+        jTextFieldSearchParameter = new javax.swing.JTextField();
+        jComboBoxSearchMode = new javax.swing.JComboBox();
+        jLabelSearchMode = new javax.swing.JLabel();
+        jScrollPaneSearchResults = new javax.swing.JScrollPane();
+        jTableSearchResults = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,107 +68,20 @@ public class DonatorGUI extends javax.swing.JFrame {
         jLabelCredits.setText("Credits: nnnn");
 
         jButtonGetCredits.setText("Get credits");
+        jButtonGetCredits.setFocusPainted(false);
+        jButtonGetCredits.setFocusable(false);
 
+        jTextAreaProjectDescription.setEditable(false);
         jTextAreaProjectDescription.setColumns(20);
         jTextAreaProjectDescription.setRows(5);
         jTextAreaProjectDescription.setText("Selected project description");
         jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
 
-        jListSearchResults.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Suggestion 1", "Suggestion 2" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jListSearchResults.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListSearchResults.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListSearchResultsValueChanged(evt);
-            }
-        });
-        jScrollPaneSearchResults.setViewportView(jListSearchResults);
-
-        jTextFieldSearchParameter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldSearchParameterKeyTyped(evt);
-            }
-        });
-
-        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Suggestions", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
-
-        jLabelSearchMode.setText("Search Mode:");
-
-        jButtonSearch.setText("Search");
-        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSearchActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanelSearchLayout = new javax.swing.GroupLayout(jPanelSearch);
-        jPanelSearch.setLayout(jPanelSearchLayout);
-        jPanelSearchLayout.setHorizontalGroup(
-            jPanelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSearchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneSearchResults)
-                    .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSearchLayout.createSequentialGroup()
-                        .addComponent(jLabelSearchMode)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxSearchMode, 0, 174, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelSearchLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButtonSearch)))
-                .addContainerGap())
-        );
-        jPanelSearchLayout.setVerticalGroup(
-            jPanelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelSearchLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelSearchLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSearchMode))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane.addTab("Projects Search", jPanelSearch);
-
-        jListDonateHistory.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Project 1", "Project 2" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPaneDonateHistory.setViewportView(jListDonateHistory);
-
-        javax.swing.GroupLayout jPanelDonateHistoryLayout = new javax.swing.GroupLayout(jPanelDonateHistory);
-        jPanelDonateHistory.setLayout(jPanelDonateHistoryLayout);
-        jPanelDonateHistoryLayout.setHorizontalGroup(
-            jPanelDonateHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDonateHistoryLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPaneDonateHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanelDonateHistoryLayout.setVerticalGroup(
-            jPanelDonateHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelDonateHistoryLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPaneDonateHistory, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jTabbedPane.addTab("Assisted Projects", jPanelDonateHistory);
-
         jLabelDonate.setText("Donate amount:");
 
         jButtonDonate.setText("Donate to current project!");
+        jButtonDonate.setFocusPainted(false);
+        jButtonDonate.setFocusable(false);
         jButtonDonate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDonateActionPerformed(evt);
@@ -181,11 +89,107 @@ public class DonatorGUI extends javax.swing.JFrame {
         });
 
         jButtonLogout.setText("Logout");
+        jButtonLogout.setFocusPainted(false);
+        jButtonLogout.setFocusable(false);
         jButtonLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonLogoutActionPerformed(evt);
             }
         });
+
+        jButtonSearch.setText("Search");
+        jButtonSearch.setFocusPainted(false);
+        jButtonSearch.setFocusable(false);
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
+
+        jTextFieldSearchParameter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldSearchParameterKeyTyped(evt);
+            }
+        });
+
+        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Donations", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
+        jComboBoxSearchMode.setFocusable(false);
+
+        jLabelSearchMode.setText("Search Mode:");
+
+        jTableSearchResults.setAutoCreateRowSorter(true);
+        jTableSearchResults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"cagano e andano", "roberto FINAL", "Machachutstets",  new Float(1.5320144E7),  new Float(1.5120123E7), "00/00/0000"},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Project Title", "Entrepreneur", "Locale", "Target", "Achieved", "Expires"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableSearchResults.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableSearchResults.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jTableSearchResults.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jTableSearchResultsPropertyChange(evt);
+            }
+        });
+        jScrollPaneSearchResults.setViewportView(jTableSearchResults);
+        jTableSearchResults.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (jTableSearchResults.getColumnModel().getColumnCount() > 0) {
+            jTableSearchResults.getColumnModel().getColumn(0).setPreferredWidth(100);
+            jTableSearchResults.getColumnModel().getColumn(1).setPreferredWidth(90);
+            jTableSearchResults.getColumnModel().getColumn(2).setPreferredWidth(90);
+            jTableSearchResults.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTableSearchResults.getColumnModel().getColumn(4).setPreferredWidth(60);
+            jTableSearchResults.getColumnModel().getColumn(5).setPreferredWidth(60);
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,24 +198,33 @@ public class DonatorGUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonDonate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTabbedPane, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelSearchMode)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonSearch))
+                    .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelTitulo))
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCredits)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonGetCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabelTitulo)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelDonate)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldDonateAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonGetCredits)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                         .addComponent(jLabelLoggedAs)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonLogout))
-                    .addComponent(jScrollPaneProjectDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPaneProjectDescription)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelDonate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldDonateAmount)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonDonate)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -221,22 +234,22 @@ public class DonatorGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTitulo)
                     .addComponent(jLabelLoggedAs)
-                    .addComponent(jButtonLogout))
-                .addGap(18, 18, 18)
+                    .addComponent(jButtonLogout)
+                    .addComponent(jLabelCredits)
+                    .addComponent(jButtonGetCredits))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSearchMode)
+                    .addComponent(jButtonSearch)
+                    .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelDonate)
+                    .addComponent(jTextFieldDonateAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonDonate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelDonate)
-                            .addComponent(jTextFieldDonateAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDonate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCredits)
-                            .addComponent(jButtonGetCredits)))
-                    .addComponent(jScrollPaneProjectDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
+                    .addComponent(jScrollPaneProjectDescription))
                 .addContainerGap())
         );
 
@@ -247,33 +260,33 @@ public class DonatorGUI extends javax.swing.JFrame {
         this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
+    private void jButtonDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonateActionPerformed
+        // TODO add your handling code here: POPUP DE CONFIRMAÇÃO => MANDAR DADOS PRA DONATE; ATUALIZAR CRÉDITOS SE TEVE SUCESSO
+    }//GEN-LAST:event_jButtonDonateActionPerformed
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        // TODO add your handling code here: MANDAR MODO DE BUSCAR E PARÂMETRO, LISTAR OS RESULTADOS
+        //try {
+            //ArrayList Communicator.Pair projects;
+            //projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
+            //jListSearchResults.removeAll();
+            //for (Communicator.Pair project : projects) {
+                //	jListSearchResults.add(project.title);
+                //}
+
+            //} catch (ServerException ex) {
+            // se não quer usar a interface como gente, morra motherfucker
+            //	this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+            //}
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
     private void jTextFieldSearchParameterKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchParameterKeyTyped
         // TODO: LEARN HOW THIS SHIT WORKS
     }//GEN-LAST:event_jTextFieldSearchParameterKeyTyped
 
-    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-		// TODO add your handling code here: MANDAR MODO DE BUSCAR E PARÂMETRO, LISTAR OS RESULTADOS
-		//try {
-			//ArrayList Communicator.Pair projects;
-			//projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
-			//jListSearchResults.removeAll();
-			//for (Communicator.Pair project : projects) {
-			//	jListSearchResults.add(project.title);
-			//}
-			
-		//} catch (ServerException ex) {
-			// se não quer usar a interface como gente, morra motherfucker
-		//	this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-		//}
-    }//GEN-LAST:event_jButtonSearchActionPerformed
-
-    private void jListSearchResultsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSearchResultsValueChanged
-        // TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
-    }//GEN-LAST:event_jListSearchResultsValueChanged
-
-    private void jButtonDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonateActionPerformed
-        // TODO add your handling code here: POPUP DE CONFIRMAÇÃO => MANDAR DADOS PRA DONATE; ATUALIZAR CRÉDITOS SE TEVE SUCESSO
-    }//GEN-LAST:event_jButtonDonateActionPerformed
+    private void jTableSearchResultsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableSearchResultsPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableSearchResultsPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonate;
@@ -286,14 +299,9 @@ public class DonatorGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLoggedAs;
     private javax.swing.JLabel jLabelSearchMode;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JList jListDonateHistory;
-    private javax.swing.JList jListSearchResults;
-    private javax.swing.JPanel jPanelDonateHistory;
-    private javax.swing.JPanel jPanelSearch;
-    private javax.swing.JScrollPane jScrollPaneDonateHistory;
     private javax.swing.JScrollPane jScrollPaneProjectDescription;
     private javax.swing.JScrollPane jScrollPaneSearchResults;
-    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JTable jTableSearchResults;
     private javax.swing.JTextArea jTextAreaProjectDescription;
     private javax.swing.JTextField jTextFieldDonateAmount;
     private javax.swing.JTextField jTextFieldSearchParameter;
