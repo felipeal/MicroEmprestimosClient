@@ -116,4 +116,8 @@ public class Communicator {
     public ArrayList<Pair<String,Integer>> searchProjects(int mode, String value) throws ServerException {
         return new SearchProjectCommunication(msgToServer, msgFromServer).searchProjects(mode, value);
     }
+    
+    public void withdraw(int projectId) throws ServerException {
+        new WithdrawCommunication(msgToServer, msgFromServer).withdraw(projectId);
+    }
 }
