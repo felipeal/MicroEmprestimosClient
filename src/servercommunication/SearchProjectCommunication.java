@@ -16,16 +16,12 @@ import javafx.util.Pair;
  *
  * @author Igor
  */
-public class SearchProjectCommunication {
-    
-    private final PrintStream msgToServer;
-    private final Scanner msgFromServer;
+public class SearchProjectCommunication extends AbstractCommunication {
     
     private final Map<Integer,String> searchStrings;
     
     public SearchProjectCommunication(PrintStream msgToServer, Scanner msgFromServer) {
-        this.msgToServer = msgToServer;
-        this.msgFromServer = msgFromServer;
+        super(msgToServer, msgFromServer);
         
         searchStrings = new HashMap<>();
         searchStrings.put(0, "suggestions");

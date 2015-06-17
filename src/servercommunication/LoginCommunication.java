@@ -13,14 +13,10 @@ import javafx.util.Pair;
  *
  * @author Igor
  */
-public class LoginCommunication {
-    
-    private final PrintStream msgToServer;
-    private final Scanner msgFromServer;
+public class LoginCommunication extends AbstractCommunication {
     
     public LoginCommunication(PrintStream msgToServer, Scanner msgFromServer) {
-        this.msgToServer = msgToServer;
-        this.msgFromServer = msgFromServer;
+        super(msgToServer, msgFromServer);
     }
     
     public Pair<String,Float> loginDonator(String username, String password) throws ServerException {

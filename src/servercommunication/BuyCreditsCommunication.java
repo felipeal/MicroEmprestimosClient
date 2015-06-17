@@ -12,14 +12,10 @@ import java.util.Scanner;
  *
  * @author Igor
  */
-public class BuyCreditsCommunication {
-    
-    private final PrintStream msgToServer;
-    private final Scanner msgFromServer;
+public class BuyCreditsCommunication extends AbstractCommunication {
     
     public BuyCreditsCommunication(PrintStream msgToServer, Scanner msgFromServer) {
-        this.msgToServer = msgToServer;
-        this.msgFromServer = msgFromServer;
+        super(msgToServer, msgFromServer);
     }
     
     public void buyCredits(float amount) throws ServerException {

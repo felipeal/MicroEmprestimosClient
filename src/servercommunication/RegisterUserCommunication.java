@@ -12,14 +12,10 @@ import java.util.Scanner;
  *
  * @author Igor
  */
-public class RegisterUserCommunication {
-    
-    private final PrintStream msgToServer;
-    private final Scanner msgFromServer;
+public class RegisterUserCommunication extends AbstractCommunication {
     
     public RegisterUserCommunication(PrintStream msgToServer, Scanner msgFromServer) {
-        this.msgToServer = msgToServer;
-        this.msgFromServer = msgFromServer;
+        super(msgToServer, msgFromServer);
     }
     
     public void RegisterDonator(String login, String password, String name) throws ServerException {

@@ -12,14 +12,10 @@ import java.util.Scanner;
  *
  * @author Igor
  */
-public class CreateProjectCommunication {
-    
-    private final PrintStream msgToServer;
-    private final Scanner msgFromServer;
+public class CreateProjectCommunication extends AbstractCommunication {
     
     public CreateProjectCommunication(PrintStream msgToServer, Scanner msgFromServer) {
-        this.msgToServer = msgToServer;
-        this.msgFromServer = msgFromServer;
+        super(msgToServer, msgFromServer);
     }
     
     public void createProject(String title, String description, float minDonationValue, float target, String limitDate) throws ServerException {

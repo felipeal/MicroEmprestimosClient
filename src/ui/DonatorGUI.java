@@ -293,14 +293,12 @@ public class DonatorGUI extends javax.swing.JFrame {
                                               " to project " + jListSearchResults.getSelectedValue().toString() + 
                                               ".\nConfirm?", "Confirm Donation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
             case JOptionPane.YES_OPTION:
-        {
-            try {
-                jLabelCredits.setText("Credits: " + communicator.donateToProject(projects.get(jListSearchResults.getSelectedIndex()).getValue(), Float.parseFloat(jTextFieldDonateAmount.getText())));
-                jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
-            } catch (ServerException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
-        }
+                try {
+                    jLabelCredits.setText("Credits: " + communicator.donateToProject(projects.get(jListSearchResults.getSelectedIndex()).getValue(), Float.parseFloat(jTextFieldDonateAmount.getText())));
+                    jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
+                } catch (ServerException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
                 break;
         }
     }//GEN-LAST:event_jButtonDonateActionPerformed
