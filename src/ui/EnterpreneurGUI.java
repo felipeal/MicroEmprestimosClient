@@ -7,10 +7,8 @@ package ui;
 
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import javafx.util.Pair;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import servercommunication.Communicator;
 import servercommunication.ServerException;
 
@@ -22,6 +20,7 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 	
 	private final Communicator communicator;
 	private final WelcomeGUI welcomeGUI;
+	private ArrayList<ArrayList<Object>> projects;
 	
 	/**
 	 * Creates new form EnterpreneurGUI
@@ -99,50 +98,50 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
         jTableSearchResults.setAutoCreateRowSorter(true);
         jTableSearchResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", "", null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, "", "", "", null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
+                "ID", "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -162,15 +161,17 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
         });
         jScrollPaneSearchResults.setViewportView(jTableSearchResults);
         if (jTableSearchResults.getColumnModel().getColumnCount() > 0) {
-            jTableSearchResults.getColumnModel().getColumn(0).setPreferredWidth(102);
-            jTableSearchResults.getColumnModel().getColumn(1).setPreferredWidth(90);
-            jTableSearchResults.getColumnModel().getColumn(2).setPreferredWidth(90);
-            jTableSearchResults.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTableSearchResults.getColumnModel().getColumn(0).setResizable(false);
+            jTableSearchResults.getColumnModel().getColumn(0).setPreferredWidth(22);
+            jTableSearchResults.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTableSearchResults.getColumnModel().getColumn(2).setPreferredWidth(80);
+            jTableSearchResults.getColumnModel().getColumn(3).setPreferredWidth(80);
             jTableSearchResults.getColumnModel().getColumn(4).setPreferredWidth(60);
             jTableSearchResults.getColumnModel().getColumn(5).setPreferredWidth(60);
+            jTableSearchResults.getColumnModel().getColumn(6).setPreferredWidth(60);
         }
 
-        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Past Projects", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
+        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Past Projects", "Project Title", "Enterpreneur name", "Location", "Remaining amount", "Achieved amount", "Expiration date" }));
         jComboBoxSearchMode.setFocusable(false);
 
         jLabelSearchMode.setText("Search Mode:");
@@ -186,9 +187,9 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 
         jPanelSelectedProject.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected Project"));
 
+        jTextAreaProjectDescription.setEditable(false);
         jTextAreaProjectDescription.setColumns(20);
         jTextAreaProjectDescription.setRows(5);
-        jTextAreaProjectDescription.setText("Current project's description");
         jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
 
         jLabelDistanceToGoal.setText("Distance to Goal:");
@@ -401,7 +402,6 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
 		try {
-			ArrayList<Pair<Integer,ArrayList<Object>>> projects;
 			projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
 			// Get table
 			DefaultTableModel dataModel = (DefaultTableModel) jTableSearchResults.getModel();
@@ -410,12 +410,13 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 			for (int i = rows-1; i >= 0; i--)
 				dataModel.removeRow(i);
 			// Fill table
-			for (Pair<Integer,ArrayList<Object>> project : projects) {
-				Object[] projectDetails = project.getValue().toArray();
-				dataModel.addRow(projectDetails);
+			for (ArrayList<Object> project : projects) {
+				dataModel.addRow(project.toArray());
 			}
 		} catch (ServerException ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage());
 			// se não quer usar a interface como gente, morra motherfucker
+			this.welcomeGUI.setVisible(true);
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
     }//GEN-LAST:event_jButtonSearchActionPerformed
@@ -431,7 +432,7 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonWithdrawActionPerformed
 
     private void jButtonPayMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPayMonthActionPerformed
-        // TODO add your handling code here:
+        // NOT YET IMPLEMENTED
     }//GEN-LAST:event_jButtonPayMonthActionPerformed
 
     private void jButtonNewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewRequestActionPerformed

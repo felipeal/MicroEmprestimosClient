@@ -7,7 +7,6 @@ package ui;
 
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
-import javafx.util.Pair;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,7 +21,7 @@ public class DonatorGUI extends javax.swing.JFrame {
 	
 	private final Communicator communicator;
 	private final WelcomeGUI welcomeGUI;
-	private ArrayList<Pair<String,Integer>> projects;
+	private ArrayList<ArrayList<Object>> projects;
 	
 	/**
 	 * Creates new form DonatorGUI
@@ -34,6 +33,7 @@ public class DonatorGUI extends javax.swing.JFrame {
 	public DonatorGUI(WelcomeGUI welcomeGUI, Communicator communicator, String user, String credits) {
 		this.welcomeGUI = welcomeGUI;
 		this.communicator = communicator;
+		this.projects = null;
 		initComponents();
 		jLabelLoggedAs.setText("Logged as ".concat(user));
 		jTextFieldCredits.setText(credits);
@@ -103,7 +103,7 @@ public class DonatorGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Donations", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
+        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Donations", "Project Title", "Enterpreneur name", "Location", "Remaining amount", "Achieved amount", "Expiration date" }));
         jComboBoxSearchMode.setFocusable(false);
 
         jLabelSearchMode.setText("Search Mode:");
@@ -111,50 +111,50 @@ public class DonatorGUI extends javax.swing.JFrame {
         jTableSearchResults.setAutoCreateRowSorter(true);
         jTableSearchResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", "", null, null, null},
-                {"", "", "", null, null, null},
-                {"", "", "", null, null, null},
-                {"", "", "", null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, "", "", "", null, null, null},
+                {null, "", "", "", null, null, null},
+                {null, "", "", "", null, null, null},
+                {null, "", "", "", null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
+                "ID", "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -176,12 +176,14 @@ public class DonatorGUI extends javax.swing.JFrame {
         jScrollPaneSearchResults.setViewportView(jTableSearchResults);
         jTableSearchResults.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (jTableSearchResults.getColumnModel().getColumnCount() > 0) {
-            jTableSearchResults.getColumnModel().getColumn(0).setPreferredWidth(102);
-            jTableSearchResults.getColumnModel().getColumn(1).setPreferredWidth(90);
-            jTableSearchResults.getColumnModel().getColumn(2).setPreferredWidth(90);
-            jTableSearchResults.getColumnModel().getColumn(3).setPreferredWidth(60);
+            jTableSearchResults.getColumnModel().getColumn(0).setResizable(false);
+            jTableSearchResults.getColumnModel().getColumn(0).setPreferredWidth(22);
+            jTableSearchResults.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTableSearchResults.getColumnModel().getColumn(2).setPreferredWidth(80);
+            jTableSearchResults.getColumnModel().getColumn(3).setPreferredWidth(80);
             jTableSearchResults.getColumnModel().getColumn(4).setPreferredWidth(60);
             jTableSearchResults.getColumnModel().getColumn(5).setPreferredWidth(60);
+            jTableSearchResults.getColumnModel().getColumn(6).setPreferredWidth(60);
         }
 
         jPanelSelectedProject.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected Project"));
@@ -190,7 +192,6 @@ public class DonatorGUI extends javax.swing.JFrame {
         jTextAreaProjectDescription.setEditable(false);
         jTextAreaProjectDescription.setColumns(20);
         jTextAreaProjectDescription.setRows(5);
-        jTextAreaProjectDescription.setText("Selected project description");
         jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
 
         jLabelDonate.setText("Donate amount:");
@@ -305,7 +306,6 @@ public class DonatorGUI extends javax.swing.JFrame {
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
 		try {
-			ArrayList<Pair<Integer,ArrayList<Object>>> projects;
 			projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
 			// Get table
 			DefaultTableModel dataModel = (DefaultTableModel) jTableSearchResults.getModel();
@@ -314,13 +314,13 @@ public class DonatorGUI extends javax.swing.JFrame {
 			for (int i = rows-1; i >= 0; i--)
 				dataModel.removeRow(i);
 			// Fill table
-			for (Pair<Integer,ArrayList<Object>> project : projects) {
-				Object[] projectDetails = project.getValue().toArray();
-				dataModel.addRow(projectDetails);
+			for (ArrayList<Object> projectDetails : projects) {
+				dataModel.addRow(projectDetails.toArray());
 			}
 		} catch (ServerException ex) {
-			// se não quer usar a interface como gente, morra motherfucker
 			JOptionPane.showMessageDialog(null, ex.getMessage());
+			// se não quer usar a interface como gente, morra motherfucker
+			this.welcomeGUI.setVisible(true);
 			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
 		}
     }//GEN-LAST:event_jButtonSearchActionPerformed
