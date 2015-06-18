@@ -23,9 +23,14 @@ public class WithdrawCommunication extends AbstractCommunication {
      * @param projectId
      * @throws ServerException 
      */
-    public void withdraw(int projectId) throws ServerException {
+    public boolean withdraw(int projectId) throws ServerException {
         // Send the function
         msgToServer.println("withdraw");
+        // Check exceptions
+        if (msgFromServer.nextLine().equals("exception")) {
+            throw new ServerException(msgFromServer.nextLine());
+        }
+        
         // Send the project id
         msgToServer.println(projectId);
         
@@ -33,6 +38,7 @@ public class WithdrawCommunication extends AbstractCommunication {
         if (msgFromServer.nextLine().equals("exception")) {
             throw new ServerException(msgFromServer.nextLine());
         }
+        return true;
     }
     
 }

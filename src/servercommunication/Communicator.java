@@ -153,7 +153,7 @@ public class Communicator {
      * @param projectId
      * @throws ServerException 
      */
-    public void withdraw(int projectId) throws ServerException {
-        new WithdrawCommunication(msgToServer, msgFromServer).withdraw(projectId);
+    public boolean withdraw(int projectId) throws ServerException {
+        return new WithdrawCommunication(msgToServer, msgFromServer).withdraw(projectId);
     }
 }
