@@ -8,6 +8,7 @@ package ui;
 import java.util.Arrays;
 import servercommunication.Communicator;
 import servercommunication.ServerException;
+import javafx.util.Pair;
 
 /**
  *
@@ -35,10 +36,25 @@ public class WelcomeGUI extends javax.swing.JFrame {
 	}
 	
 	private void clearInputFields() {
-		jTextFieldID.setText("");
+		jTextFieldUsername.setText("");
 		jPasswordField.setText("");
 		jTextFieldFullName.setText("");
 		jTextFieldLocale.setText("");
+	}
+	
+	private boolean checkInputFields(String action) {
+		clearWarnLabels();
+		
+		if ("".equals(jTextFieldUsername.getText()))
+			jLabelWarnID.setText("This field is required!");
+		else if (jPasswordField.getPassword().length == 0)
+			jLabelWarnPassword.setText("This field is required!");
+		else if (action.contains("register") && "".equals(jTextFieldFullName.getText()))
+			jLabelWarnFullName.setText("This field is required!");
+		else if (action.equals("registerEntpr") && "".equals(jTextFieldLocale.getText()))
+			jLabelWarnLocale.setText("This field is required!");
+		else return true;
+		return false;
 	}
 	
     /**
@@ -56,8 +72,8 @@ public class WelcomeGUI extends javax.swing.JFrame {
         jButtonRegEntpr = new javax.swing.JButton();
         jButtonLogAdmn = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
-        jTextFieldID = new javax.swing.JTextField();
-        jLabelID = new javax.swing.JLabel();
+        jTextFieldUsername = new javax.swing.JTextField();
+        jLabelUsername = new javax.swing.JLabel();
         jLabelPassword = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
         jTextFieldFullName = new javax.swing.JTextField();
@@ -80,6 +96,11 @@ public class WelcomeGUI extends javax.swing.JFrame {
         });
 
         jButtonRegDon.setText("Register as Donator");
+        jButtonRegDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegDonActionPerformed(evt);
+            }
+        });
 
         jButtonLogEntpr.setText("Log as Enterpreneur");
         jButtonLogEntpr.addActionListener(new java.awt.event.ActionListener() {
@@ -89,13 +110,18 @@ public class WelcomeGUI extends javax.swing.JFrame {
         });
 
         jButtonRegEntpr.setText("Register as Enterpreneur");
+        jButtonRegEntpr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegEntprActionPerformed(evt);
+            }
+        });
 
         jButtonLogAdmn.setText("Log as Administrator");
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jLabelTitulo.setText("MicroEmprestimos");
 
-        jLabelID.setText("Username");
+        jLabelUsername.setText("Username");
 
         jLabelPassword.setText("Password");
 
@@ -131,9 +157,9 @@ public class WelcomeGUI extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabelID)
+                                    .addComponent(jLabelUsername)
                                     .addGap(18, 18, 18)
-                                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jButtonLogDon, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
@@ -172,8 +198,8 @@ public class WelcomeGUI extends javax.swing.JFrame {
                 .addComponent(jLabelTitulo)
                 .addGap(77, 77, 77)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelID)
+                    .addComponent(jTextFieldUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelUsername)
                     .addComponent(jLabelWarnID))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -209,34 +235,50 @@ public class WelcomeGUI extends javax.swing.JFrame {
     private void jButtonLogDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogDonActionPerformed
         clearWarnLabels();
 		
-		if ("".equals(jTextFieldID.getText()))
-			jLabelWarnID.setText("This field is required!");
-		else if (jPasswordField.getPassword().length == 0)
-			jLabelWarnPassword.setText("This field is required!");
-		else try {
-				String credits = communicator.login(jTextFieldID.getText(),Arrays.toString(jPasswordField.getPassword()));
-				new DonatorGUI(communicator,jTextFieldID.getText(),credits).setVisible(true);
+		if (checkInputFields("login"))
+			try {
+				Pair<String,Float> userData = communicator.loginDonator(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()));
+				new DonatorGUI(this, communicator,userData.getKey(),userData.getValue().toString()).setVisible(true);
 				clearInputFields();
+				this.setVisible(false);
 			} catch (ServerException e) {
 				jLabelWarnID.setText("Invalid ID and Password combination!");
 			}
     }//GEN-LAST:event_jButtonLogDonActionPerformed
 
     private void jButtonLogEntprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogEntprActionPerformed
-        clearWarnLabels();
-		
-		if ("".equals(jTextFieldID.getText()))
-			jLabelWarnID.setText("This field is required!");
-		else if (jPasswordField.getPassword().length == 0)
-			jLabelWarnPassword.setText("This field is required!");
-		else try {
-				communicator.login(jTextFieldID.getText(),Arrays.toString(jPasswordField.getPassword()));
-				new EnterpreneurGUI(communicator,jTextFieldID.getText()).setVisible(true);
+		if (checkInputFields("login"))
+			try {
+				Pair<String, String> userData = communicator.loginEntrepreneur(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()));
+				new EnterpreneurGUI(this, communicator,userData.getKey()).setVisible(true);
 				clearInputFields();
+				this.setVisible(false);
 			} catch (ServerException e) {
 				jLabelWarnID.setText("Invalid ID and Password combination!");
 			}
     }//GEN-LAST:event_jButtonLogEntprActionPerformed
+
+    private void jButtonRegDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegDonActionPerformed
+		if (checkInputFields("registerDon"))
+			try {
+				communicator.registerDonator(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()),jTextFieldFullName.getText());
+				clearInputFields();
+				jLabelWarnID.setText("Registration was a sucess!");
+			} catch (ServerException e) {
+				jLabelWarnID.setText("Invalid ID and Password combination!");
+			}
+    }//GEN-LAST:event_jButtonRegDonActionPerformed
+
+    private void jButtonRegEntprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegEntprActionPerformed
+		if (checkInputFields("registerEntpr"))
+			try {
+				communicator.registerEntrepreneur(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()),jTextFieldFullName.getText(),jTextFieldLocale.getText());
+				clearInputFields();
+				jLabelWarnID.setText("Registration was a sucess!");
+			} catch (ServerException e) {
+				jLabelWarnID.setText("Invalid ID and Password combination!");
+			}
+    }//GEN-LAST:event_jButtonRegEntprActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogAdmn;
@@ -245,18 +287,18 @@ public class WelcomeGUI extends javax.swing.JFrame {
     private javax.swing.JButton jButtonRegDon;
     private javax.swing.JButton jButtonRegEntpr;
     private javax.swing.JLabel jLabelFullName;
-    private javax.swing.JLabel jLabelID;
     private javax.swing.JLabel jLabelLocale;
     private javax.swing.JLabel jLabelPassword;
     private javax.swing.JLabel jLabelRegister;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JLabel jLabelUsername;
     private javax.swing.JLabel jLabelWarnFullName;
     private javax.swing.JLabel jLabelWarnID;
     private javax.swing.JLabel jLabelWarnLocale;
     private javax.swing.JLabel jLabelWarnPassword;
     private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldFullName;
-    private javax.swing.JTextField jTextFieldID;
     private javax.swing.JTextField jTextFieldLocale;
+    private javax.swing.JTextField jTextFieldUsername;
     // End of variables declaration//GEN-END:variables
 }

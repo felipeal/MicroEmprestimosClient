@@ -39,9 +39,9 @@
                                   <Component id="jPasswordField" min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabelID" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelUsername" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldID" min="-2" pref="153" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldUsername" min="-2" pref="153" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="jButtonLogDon" min="-2" pref="153" max="-2" attributes="0"/>
@@ -94,8 +94,8 @@
               <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextFieldID" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelID" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldUsername" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelWarnID" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -146,6 +146,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Register as Donator"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegDonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonLogEntpr">
       <Properties>
@@ -159,6 +162,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Register as Enterpreneur"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegEntprActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonLogAdmn">
       <Properties>
@@ -173,9 +179,9 @@
         <Property name="text" type="java.lang.String" value="MicroEmprestimos"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldID">
+    <Component class="javax.swing.JTextField" name="jTextFieldUsername">
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelID">
+    <Component class="javax.swing.JLabel" name="jLabelUsername">
       <Properties>
         <Property name="text" type="java.lang.String" value="Username"/>
       </Properties>
