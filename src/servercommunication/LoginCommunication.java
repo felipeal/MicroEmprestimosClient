@@ -50,7 +50,7 @@ public class LoginCommunication extends AbstractCommunication {
      * @return a pair containing the name and location of the client
      * @throws ServerException 
      */
-    public Pair<String,String> loginEntrepreneur(String username, String password) throws ServerException {
+    public String loginEntrepreneur(String username, String password) throws ServerException {
         // Send the login message
         msgToServer.println("login");
         // Send the role
@@ -60,11 +60,8 @@ public class LoginCommunication extends AbstractCommunication {
         
         // Receive entrepreneur's name
         String name = msgFromServer.nextLine();
-        // Receive entrepreneur's location
-        String location = msgFromServer.nextLine();
         
-        Pair<String,String> returnVariable = new Pair<>(name, location);
-        return returnVariable;
+        return name;
     }
     
     private void login(String username, String password) throws ServerException {

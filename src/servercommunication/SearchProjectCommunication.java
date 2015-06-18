@@ -5,6 +5,7 @@
  */
 package servercommunication;
 
+import java.awt.List;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class SearchProjectCommunication extends AbstractCommunication {
         super(msgToServer, msgFromServer);
         
         searchStrings = new HashMap<>();
-        searchStrings.put(0, "suggestions");
+        searchStrings.put(0, "owned");
         searchStrings.put(1, "title");
         searchStrings.put(2, "enterpreneurName");
         searchStrings.put(3, "locale");
@@ -40,13 +41,20 @@ public class SearchProjectCommunication extends AbstractCommunication {
      * @return the list of result projects
      * @throws ServerException 
      */
-    public ArrayList<Pair<String,Integer>> searchProjects(int mode, String value) throws ServerException {
-        ArrayList<Pair<String,Integer>> result = new ArrayList<>();
+    public ArrayList<Pair<Integer,ArrayList<Object>>> searchProjects(int mode, String value) throws ServerException {
+        ArrayList<Pair<Integer,ArrayList<Object>>> result = new ArrayList<>();
         
         // Send the search message
         msgToServer.println("search");
         
-        // If the map searchStrings contains this mode of search, send the mode to the server
+        System.out.println("Search function: " + mode);
+        
+        // Check for exceptions
+        if (msgFromServer.nextLine().equals("exception")) {
+            throw new ServerException(msgFromServer.nextLine());
+        }
+        
+// If the map searchStrings contains this mode of search, send the mode to the server
         if (searchStrings.containsKey(mode))
             // Send the search mode
             msgToServer.println(searchStrings.get(mode));
@@ -65,49 +73,37 @@ public class SearchProjectCommunication extends AbstractCommunication {
         
         // Receive the id of the first project
         String stringId = msgFromServer.nextLine();
+        System.out.println(stringId);
         
         // When the id is equals end all results have been received
         while (!stringId.equals("end")) {
+            ArrayList<Object> data = new ArrayList<Object>();
+            
             // Receive the title of the project
             String title = msgFromServer.nextLine();
+            data.add(0, title);
+            // Receive the project owner's name
+            String entrepreneur = msgFromServer.nextLine();
+            data.add(1, entrepreneur);
+            // Receive the project location
+            String location = msgFromServer.nextLine();
+            data.add(2, location);
+            // Receive project target value
+            float target = Float.parseFloat(msgFromServer.nextLine());
+            data.add(3, target);
+            // Receive achieved amount
+            float achieved = Float.parseFloat(msgFromServer.nextLine());
+            data.add(4, achieved);
+            // Receive expiration date
+            String date = msgFromServer.nextLine();
+            data.add(5, date);
+            
             // Add the pair to the result list
-            result.add(new Pair<>(title, Integer.parseInt(stringId)));
+            result.add(new Pair<>(Integer.parseInt(stringId), data));
             // Receive the next id
             stringId = msgFromServer.nextLine();
         }
-        
-        // Return the list of pairs
-        return result;
-    }
-    
-    /**
-     * Communicates with the server to get the list of projects owned by the client.
-     * @return the list of projects owned by the client
-     * @throws ServerException 
-     */
-    public ArrayList<Pair<String,Integer>> getOwnedProjects() throws ServerException {
-        ArrayList<Pair<String,Integer>> result = new ArrayList<>();
-        
-        //Send the function
-        msgToServer.println("getOwnedProjects");
-        
-        // Check for exceptions
-        if (msgFromServer.nextLine().equals("exception")) {
-            throw new ServerException(msgFromServer.nextLine());
-        }
-        
-        // Receive the id of the first project
-        String stringId = msgFromServer.nextLine();
-        
-        // When the id is equals end all results have been received
-        while (!stringId.equals("end")) {
-            // Receive the title of the project
-            String title = msgFromServer.nextLine();
-            // Add the pair to the result list
-            result.add(new Pair<>(title, Integer.parseInt(stringId)));
-            // Receive the next id
-            stringId = msgFromServer.nextLine();
-        }
+        System.out.println("Search finished");
         
         // Return the list of pairs
         return result;

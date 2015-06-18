@@ -82,15 +82,6 @@ public class Communicator {
     }
     
     /**
-     * Communicates with the server to get the list of projects owned by the client.
-     * @return
-     * @throws ServerException 
-     */
-    public ArrayList<Pair<String,Integer>> getOwnedProjects() throws ServerException {
-        return new SearchProjectCommunication(msgToServer, msgFromServer).getOwnedProjects();
-    }
-    
-    /**
      * Communicates with the server to get information about the project with the given id.
      * @param projectId
      * @return a String containing information about the project
@@ -117,10 +108,10 @@ public class Communicator {
      * Communicates with the server to start a session as a entrepreneur.
      * @param username
      * @param password
-     * @return a pair containing the name and the location of the entrepreneur
+     * @return the name of the entrepreneur
      * @throws ServerException 
      */
-    public Pair<String,String> loginEntrepreneur(String username, String password) throws ServerException {
+    public String loginEntrepreneur(String username, String password) throws ServerException {
         return new LoginCommunication(msgToServer, msgFromServer).loginEntrepreneur(username, password);
     }
     
@@ -153,7 +144,7 @@ public class Communicator {
      * @return a list containing pairs that contain the title and the id of the project
      * @throws ServerException 
      */
-    public ArrayList<Pair<String,Integer>> searchProjects(int mode, String value) throws ServerException {
+    public ArrayList<Pair<Integer,ArrayList<Object>>> searchProjects(int mode, String value) throws ServerException {
         return new SearchProjectCommunication(msgToServer, msgFromServer).searchProjects(mode, value);
     }
     
