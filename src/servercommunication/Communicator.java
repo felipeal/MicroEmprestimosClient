@@ -144,7 +144,7 @@ public class Communicator {
      * @return a list containing pairs that contain the title and the id of the project
      * @throws ServerException 
      */
-    public ArrayList<Pair<Integer,ArrayList<Object>>> searchProjects(int mode, String value) throws ServerException {
+    public ArrayList<ArrayList<Object>> searchProjects(int mode, String value) throws ServerException {
         return new SearchProjectCommunication(msgToServer, msgFromServer).searchProjects(mode, value);
     }
     

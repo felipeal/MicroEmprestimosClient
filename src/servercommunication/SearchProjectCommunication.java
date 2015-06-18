@@ -27,7 +27,7 @@ public class SearchProjectCommunication extends AbstractCommunication {
         searchStrings = new HashMap<>();
         searchStrings.put(0, "owned");
         searchStrings.put(1, "title");
-        searchStrings.put(2, "enterpreneurName");
+        searchStrings.put(2, "entrepreneurName");
         searchStrings.put(3, "locale");
         searchStrings.put(4, "remainingAmount");
         searchStrings.put(5, "achievedAmount");
@@ -41,8 +41,8 @@ public class SearchProjectCommunication extends AbstractCommunication {
      * @return the list of result projects
      * @throws ServerException 
      */
-    public ArrayList<Pair<Integer,ArrayList<Object>>> searchProjects(int mode, String value) throws ServerException {
-        ArrayList<Pair<Integer,ArrayList<Object>>> result = new ArrayList<>();
+    public ArrayList<ArrayList<Object>> searchProjects(int mode, String value) throws ServerException {
+        ArrayList<ArrayList<Object>> result = new ArrayList<>();
         
         // Send the search message
         msgToServer.println("search");
@@ -78,28 +78,29 @@ public class SearchProjectCommunication extends AbstractCommunication {
         // When the id is equals end all results have been received
         while (!stringId.equals("end")) {
             ArrayList<Object> data = new ArrayList<Object>();
+            data.add(0, Integer.parseInt(stringId));
             
             // Receive the title of the project
             String title = msgFromServer.nextLine();
-            data.add(0, title);
+            data.add(1, title);
             // Receive the project owner's name
             String entrepreneur = msgFromServer.nextLine();
-            data.add(1, entrepreneur);
+            data.add(2, entrepreneur);
             // Receive the project location
             String location = msgFromServer.nextLine();
-            data.add(2, location);
+            data.add(3, location);
             // Receive project target value
             float target = Float.parseFloat(msgFromServer.nextLine());
-            data.add(3, target);
+            data.add(4, target);
             // Receive achieved amount
             float achieved = Float.parseFloat(msgFromServer.nextLine());
-            data.add(4, achieved);
+            data.add(5, achieved);
             // Receive expiration date
             String date = msgFromServer.nextLine();
-            data.add(5, date);
+            data.add(6, date);
             
             // Add the pair to the result list
-            result.add(new Pair<>(Integer.parseInt(stringId), data));
+            result.add(data);
             // Receive the next id
             stringId = msgFromServer.nextLine();
         }
