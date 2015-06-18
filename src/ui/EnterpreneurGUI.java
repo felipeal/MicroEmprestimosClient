@@ -6,7 +6,13 @@
 package ui;
 
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import javafx.util.Pair;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import servercommunication.Communicator;
+import servercommunication.ServerException;
 
 /**
  *
@@ -129,11 +135,11 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Project Title", "Entrepreneur", "Locale", "Target", "Achieved", "Expires"
+                "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -163,12 +169,6 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
             jTableSearchResults.getColumnModel().getColumn(4).setPreferredWidth(60);
             jTableSearchResults.getColumnModel().getColumn(5).setPreferredWidth(60);
         }
-
-        jTextFieldSearchParameter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldSearchParameterKeyTyped(evt);
-            }
-        });
 
         jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Past Projects", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
         jComboBoxSearchMode.setFocusable(false);
@@ -207,6 +207,11 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
         jButtonPayMonth.setText("Pay monthly fee");
         jButtonPayMonth.setFocusPainted(false);
         jButtonPayMonth.setFocusable(false);
+        jButtonPayMonth.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPayMonthActionPerformed(evt);
+            }
+        });
 
         jTextFieldDistanceToGoal.setEnabled(false);
 
@@ -256,12 +261,6 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 
         jLabelProjectName.setText("Project Name:");
 
-        jTextFieldProjectName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProjectNameActionPerformed(evt);
-            }
-        });
-
         jLabelTargetAmount.setText("Target Amount:");
 
         jButtonNewRequest.setText("New Request");
@@ -276,12 +275,6 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
         jLabelMinDonation.setText("Minimum Donation:");
 
         jLabelLimitDate.setText("Limit Date:");
-
-        jTextFieldLimitDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldLimitDateActionPerformed(evt);
-            }
-        });
 
         jLabelDescription.setText("Description:");
 
@@ -406,45 +399,54 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+		try {
+			ArrayList<Pair<Integer,ArrayList<Object>>> projects;
+			projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
+			// Get table
+			DefaultTableModel dataModel = (DefaultTableModel) jTableSearchResults.getModel();
+			// Clear table
+			int rows = dataModel.getRowCount();
+			for (int i = rows-1; i >= 0; i--)
+				dataModel.removeRow(i);
+			// Fill table
+			for (Pair<Integer,ArrayList<Object>> project : projects) {
+				Object[] projectDetails = project.getValue().toArray();
+				dataModel.addRow(projectDetails);
+			}
+		} catch (ServerException ex) {
+			// se não quer usar a interface como gente, morra motherfucker
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		}
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
     private void jTableSearchResultsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableSearchResultsPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableSearchResultsPropertyChange
 
-    private void jTextFieldSearchParameterKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchParameterKeyTyped
-        // TODO: LEARN HOW THIS SHIT WORKS
-    }//GEN-LAST:event_jTextFieldSearchParameterKeyTyped
-
-    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        // TODO add your handling code here: MANDAR MODO DE BUSCAR E PARÂMETRO, LISTAR OS RESULTADOS
-        //try {
-            //ArrayList Communicator.Pair projects;
-            //projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
-            //jListSearchResults.removeAll();
-            //for (Communicator.Pair project : projects) {
-                //	jListSearchResults.add(project.title);
-                //}
-
-            //} catch (ServerException ex) {
-            // se não quer usar a interface como gente, morra motherfucker
-            //	this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-            //}
-    }//GEN-LAST:event_jButtonSearchActionPerformed
-
-    private void jButtonNewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewRequestActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNewRequestActionPerformed
-
     private void jButtonWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWithdrawActionPerformed
-        // TODO add your handling code here:
+//		try {
+//			communicator.withdraw();
+//		}
     }//GEN-LAST:event_jButtonWithdrawActionPerformed
 
-    private void jTextFieldProjectNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProjectNameActionPerformed
+    private void jButtonPayMonthActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPayMonthActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProjectNameActionPerformed
+    }//GEN-LAST:event_jButtonPayMonthActionPerformed
 
-    private void jTextFieldLimitDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLimitDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldLimitDateActionPerformed
+    private void jButtonNewRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewRequestActionPerformed
+		try {
+			communicator.createProject(jTextFieldProjectName.getText(), jTextAreaNewRequestDescription.getText(), Float.parseFloat(jTextFieldMinDonation.getText()), Float.parseFloat(jTextFieldTargetAmount.getText()), jTextFieldLimitDate.getText());
+			JOptionPane.showMessageDialog(null, "Request sent successfully!");
+			jTextFieldProjectName.setText("");
+			jTextAreaNewRequestDescription.setText("");
+			jTextFieldMinDonation.setText("");
+			jTextFieldTargetAmount.setText("");
+			jTextFieldLimitDate.setText("");
+		} catch (ServerException ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+		}
+    }//GEN-LAST:event_jButtonNewRequestActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogout;

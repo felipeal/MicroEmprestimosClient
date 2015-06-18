@@ -205,7 +205,7 @@
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="Locale" type="java.lang.String">
+                <Column editable="false" title="Location" type="java.lang.String">
                   <Data value=""/>
                   <Data value="null"/>
                   <Data value="null"/>
@@ -241,8 +241,8 @@
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="Target" type="java.lang.String"/>
-                <Column editable="false" title="Achieved" type="java.lang.String"/>
+                <Column editable="false" title="Target" type="java.lang.Float"/>
+                <Column editable="false" title="Achieved" type="java.lang.Float"/>
                 <Column editable="false" title="Expires" type="java.lang.String"/>
               </Table>
             </Property>
@@ -295,9 +295,6 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JTextField" name="jTextFieldSearchParameter">
-      <Events>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldSearchParameterKeyTyped"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jComboBoxSearchMode">
       <Properties>
@@ -432,6 +429,9 @@
             <Property name="focusPainted" type="boolean" value="false"/>
             <Property name="focusable" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPayMonthActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldDistanceToGoal">
           <Properties>
@@ -527,9 +527,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldProjectName">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldProjectNameActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelTargetAmount">
           <Properties>
@@ -561,9 +558,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextFieldLimitDate">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldLimitDateActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelDescription">
           <Properties>

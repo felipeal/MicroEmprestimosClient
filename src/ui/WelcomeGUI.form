@@ -24,55 +24,20 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="264" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="jButtonLogDon" min="-2" pref="153" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonLogEntpr" min="-2" pref="153" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jButtonLogAdmn" min="-2" pref="153" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="290" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabelPassword" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jPasswordField" min="-2" pref="153" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabelUsername" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldUsername" min="-2" pref="153" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButtonLogDon" min="-2" pref="153" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jButtonLogEntpr" min="-2" pref="153" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButtonLogAdmn" min="-2" pref="153" max="-2" attributes="0"/>
-                              <Component id="jLabelWarnID" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelWarnPassword" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jLabelFullName" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelLocale" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jTextFieldLocale" max="32767" attributes="0"/>
-                              <Component id="jTextFieldFullName" min="-2" pref="153" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelWarnFullName" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabelWarnLocale" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="289" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jButtonRegDon" min="-2" pref="153" max="-2" attributes="0"/>
@@ -80,10 +45,51 @@
                       <Component id="jLabelRegister" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jButtonRegEntpr" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="282" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabelPassword" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jPasswordField" min="-2" pref="153" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jLabelUsername" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="jTextFieldUsername" min="-2" pref="153" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelWarnID" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelWarnPassword" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="360" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="jLabelFullName" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelLocation" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jTextFieldLocation" max="32767" attributes="0"/>
+                          <Component id="jTextFieldFullName" min="-2" pref="153" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabelWarnFullName" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelWarnLocation" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -104,13 +110,13 @@
                   <Component id="jLabelPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelWarnPassword" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonLogDon" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonLogEntpr" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonLogAdmn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="89" max="32767" attributes="0"/>
+              <EmptySpace pref="93" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jTextFieldFullName" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelFullName" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -118,11 +124,11 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jTextFieldLocale" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelLocale" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelWarnLocale" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jTextFieldLocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelLocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelWarnLocation" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonRegDon" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonRegEntpr" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -137,6 +143,8 @@
     <Component class="javax.swing.JButton" name="jButtonLogDon">
       <Properties>
         <Property name="text" type="java.lang.String" value="Log as Donator"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLogDonActionPerformed"/>
@@ -145,6 +153,8 @@
     <Component class="javax.swing.JButton" name="jButtonRegDon">
       <Properties>
         <Property name="text" type="java.lang.String" value="Register as Donator"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegDonActionPerformed"/>
@@ -153,6 +163,8 @@
     <Component class="javax.swing.JButton" name="jButtonLogEntpr">
       <Properties>
         <Property name="text" type="java.lang.String" value="Log as Enterpreneur"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLogEntprActionPerformed"/>
@@ -161,6 +173,8 @@
     <Component class="javax.swing.JButton" name="jButtonRegEntpr">
       <Properties>
         <Property name="text" type="java.lang.String" value="Register as Enterpreneur"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRegEntprActionPerformed"/>
@@ -169,6 +183,8 @@
     <Component class="javax.swing.JButton" name="jButtonLogAdmn">
       <Properties>
         <Property name="text" type="java.lang.String" value="Log as Administrator"/>
+        <Property name="focusPainted" type="boolean" value="false"/>
+        <Property name="focusable" type="boolean" value="false"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTitulo">
@@ -195,16 +211,16 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jTextFieldFullName">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextFieldLocale">
+    <Component class="javax.swing.JTextField" name="jTextFieldLocation">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelFullName">
       <Properties>
         <Property name="text" type="java.lang.String" value="Full Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelLocale">
+    <Component class="javax.swing.JLabel" name="jLabelLocation">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Locale"/>
+        <Property name="text" type="java.lang.String" value="Location"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelRegister">
@@ -227,7 +243,7 @@
         <Property name="text" type="java.lang.String" value="identa&#xe7;&#xe3;o"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelWarnLocale">
+    <Component class="javax.swing.JLabel" name="jLabelWarnLocation">
       <Properties>
         <Property name="text" type="java.lang.String" value="ever"/>
       </Properties>

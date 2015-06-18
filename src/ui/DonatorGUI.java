@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javafx.util.Pair;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import servercommunication.Communicator;
 import servercommunication.ServerException;
 
@@ -35,7 +36,7 @@ public class DonatorGUI extends javax.swing.JFrame {
 		this.communicator = communicator;
 		initComponents();
 		jLabelLoggedAs.setText("Logged as ".concat(user));
-		jLabelCredits.setText("Credits: ".concat(credits));
+		jTextFieldCredits.setText(credits);
 	}
 
 	/**
@@ -78,6 +79,11 @@ public class DonatorGUI extends javax.swing.JFrame {
         jButtonGetCredits.setText("Get credits");
         jButtonGetCredits.setFocusPainted(false);
         jButtonGetCredits.setFocusable(false);
+        jButtonGetCredits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGetCreditsActionPerformed(evt);
+            }
+        });
 
         jButtonLogout.setText("Logout");
         jButtonLogout.setFocusPainted(false);
@@ -97,12 +103,6 @@ public class DonatorGUI extends javax.swing.JFrame {
             }
         });
 
-        jTextFieldSearchParameter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFieldSearchParameterKeyTyped(evt);
-            }
-        });
-
         jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Donations", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
         jComboBoxSearchMode.setFocusable(false);
 
@@ -111,10 +111,10 @@ public class DonatorGUI extends javax.swing.JFrame {
         jTableSearchResults.setAutoCreateRowSorter(true);
         jTableSearchResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"", "", "", null, null, ""},
-                {"", "", "", null, null, ""},
-                {"", "", "", null, null, ""},
-                {"", "", "", null, null, ""},
+                {"", "", "", null, null, null},
+                {"", "", "", null, null, null},
+                {"", "", "", null, null, null},
+                {"", "", "", null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -147,11 +147,11 @@ public class DonatorGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Project Title", "Entrepreneur", "Locale", "Target", "Achieved", "Expires"
+                "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class, java.lang.Float.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false
@@ -216,7 +216,7 @@ public class DonatorGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldDonateAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDonate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButtonDonate, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
                     .addComponent(jScrollPaneProjectDescription))
                 .addContainerGap())
         );
@@ -258,10 +258,10 @@ public class DonatorGUI extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addComponent(jLabelCredits)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldCredits, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonGetCredits)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabelLoggedAs)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonLogout))
@@ -304,59 +304,67 @@ public class DonatorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        try {
-            projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
-            jListSearchResults.removeAll();
-            
-            DefaultListModel listModel = new DefaultListModel();
-            jListSearchResults.setModel(listModel);
-            for (Pair<String,Integer> project : projects) {
-                listModel.addElement(project.getKey());
-            }
-            jListSearchResults.validate();
-
-        } catch (ServerException ex) {
-            // se não quer usar a interface como gente, morra motherfucker
-            this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
-        }
-
+		try {
+			ArrayList<Pair<Integer,ArrayList<Object>>> projects;
+			projects = communicator.searchProjects(jComboBoxSearchMode.getSelectedIndex(),jTextFieldSearchParameter.getText());
+			// Get table
+			DefaultTableModel dataModel = (DefaultTableModel) jTableSearchResults.getModel();
+			// Clear table
+			int rows = dataModel.getRowCount();
+			for (int i = rows-1; i >= 0; i--)
+				dataModel.removeRow(i);
+			// Fill table
+			for (Pair<Integer,ArrayList<Object>> project : projects) {
+				Object[] projectDetails = project.getValue().toArray();
+				dataModel.addRow(projectDetails);
+			}
+		} catch (ServerException ex) {
+			// se não quer usar a interface como gente, morra motherfucker
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		}
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
-    private void jTextFieldSearchParameterKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldSearchParameterKeyTyped
-        // TODO: LEARN HOW THIS SHIT WORKS
-    }//GEN-LAST:event_jTextFieldSearchParameterKeyTyped
-
     private void jTableSearchResultsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableSearchResultsPropertyChange
-        // TODO add your handling code here:
+//		try {
+//				// TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
+//				if (jListSearchResults.getSelectedIndex() == -1)
+//					jTextAreaProjectDescription.setText("Selected project description");
+//				else
+//					jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
+//			} catch (ServerException ex) {
+//				JOptionPane.showMessageDialog(null, ex.getMessage());
+//			}
     }//GEN-LAST:event_jTableSearchResultsPropertyChange
 
-    private void jListSearchResultsValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListSearchResultsValueChanged
-            try {
-                // TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
-                if (jListSearchResults.getSelectedIndex() == -1)
-                    jTextAreaProjectDescription.setText("Selected project description");
-                else
-                    jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
-            } catch (ServerException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage());
-            }
-    }//GEN-LAST:event_jListSearchResultsValueChanged
-
     private void jButtonDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonateActionPerformed
-		// TODO add your handling code here: POPUP DE CONFIRMAÇÃO => MANDAR DADOS PRA DONATE; ATUALIZAR CRÉDITOS SE TEVE SUCESSO
-		switch (JOptionPane.showConfirmDialog(null, "Donating " + jTextFieldDonateAmount.getText() + 
-											  " to project " + jTableSearchResults.get + 
-											  ".\nConfirm?", "Confirm Donation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
-			case JOptionPane.YES_OPTION:
-				try {
-					jLabelCredits.setText("Credits: " + communicator.donateToProject(projects.get(jTableSearchResults.getSelectedRow()).getValue(), Float.parseFloat(jTextFieldDonateAmount.getText())));
-					jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
-				} catch (ServerException ex) {
-					JOptionPane.showMessageDialog(null, ex.getMessage());
-				}
-				break;
-		}
+//		// TODO add your handling code here: POPUP DE CONFIRMAÇÃO => MANDAR DADOS PRA DONATE; ATUALIZAR CRÉDITOS SE TEVE SUCESSO
+//		switch (JOptionPane.showConfirmDialog(null, "Donating " + jTextFieldDonateAmount.getText() + 
+//											  " to project " + jTableSearchResults.get + 
+//											  ".\nConfirm?", "Confirm Donation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE)) {
+//			case JOptionPane.YES_OPTION:
+//				try {
+//					jLabelCredits.setText("Credits: " + communicator.donateToProject(projects.get(jTableSearchResults.getSelectedRow()).getValue(), Float.parseFloat(jTextFieldDonateAmount.getText())));
+//					jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
+//				} catch (ServerException ex) {
+//					JOptionPane.showMessageDialog(null, ex.getMessage());
+//				}
+//				break;
+//		}
     }//GEN-LAST:event_jButtonDonateActionPerformed
+
+    private void jButtonGetCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCreditsActionPerformed
+		try {
+			Float creds = Float.parseFloat(JOptionPane.showInputDialog(rootPane, "Define the size of purchase", "Credits Purchase", JOptionPane.INFORMATION_MESSAGE, null, null, "").toString());
+			communicator.buyCredits(creds);
+			creds += Float.parseFloat(jTextFieldCredits.getText());
+			jTextFieldCredits.setText(creds.toString());
+		} catch (NumberFormatException nfex) {
+			JOptionPane.showMessageDialog(null, "You must type a proper number", "Input Error", JOptionPane.ERROR_MESSAGE);
+		} catch (ServerException ex) {
+			JOptionPane.showMessageDialog(null, ex.getMessage());
+		}
+    }//GEN-LAST:event_jButtonGetCreditsActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonate;
