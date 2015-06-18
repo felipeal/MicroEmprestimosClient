@@ -47,11 +47,6 @@ public class DonatorGUI extends javax.swing.JFrame {
         jLabelLoggedAs = new javax.swing.JLabel();
         jLabelCredits = new javax.swing.JLabel();
         jButtonGetCredits = new javax.swing.JButton();
-        jScrollPaneProjectDescription = new javax.swing.JScrollPane();
-        jTextAreaProjectDescription = new javax.swing.JTextArea();
-        jLabelDonate = new javax.swing.JLabel();
-        jButtonDonate = new javax.swing.JButton();
-        jTextFieldDonateAmount = new javax.swing.JTextField();
         jButtonLogout = new javax.swing.JButton();
         jButtonSearch = new javax.swing.JButton();
         jTextFieldSearchParameter = new javax.swing.JTextField();
@@ -59,36 +54,26 @@ public class DonatorGUI extends javax.swing.JFrame {
         jLabelSearchMode = new javax.swing.JLabel();
         jScrollPaneSearchResults = new javax.swing.JScrollPane();
         jTableSearchResults = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPaneProjectDescription = new javax.swing.JScrollPane();
+        jTextAreaProjectDescription = new javax.swing.JTextArea();
+        jButtonDonate = new javax.swing.JButton();
+        jLabelDonate = new javax.swing.JLabel();
+        jTextFieldDonateAmount = new javax.swing.JTextField();
+        jTextFieldCredits = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelTitulo.setText("MicroEmprestimos");
 
-        jLabelLoggedAs.setText("Logged as FulanoNomeComprido");
+        jLabelLoggedAs.setText("Logged as USERNAME");
 
-        jLabelCredits.setText("Credits: nnnn");
+        jLabelCredits.setText("Credits:");
 
         jButtonGetCredits.setText("Get credits");
         jButtonGetCredits.setFocusPainted(false);
         jButtonGetCredits.setFocusable(false);
-
-        jTextAreaProjectDescription.setEditable(false);
-        jTextAreaProjectDescription.setColumns(20);
-        jTextAreaProjectDescription.setRows(5);
-        jTextAreaProjectDescription.setText("Selected project description");
-        jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
-
-        jLabelDonate.setText("Donate amount:");
-
-        jButtonDonate.setText("Donate to current project!");
-        jButtonDonate.setFocusPainted(false);
-        jButtonDonate.setFocusable(false);
-        jButtonDonate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDonateActionPerformed(evt);
-            }
-        });
 
         jButtonLogout.setText("Logout");
         jButtonLogout.setFocusPainted(false);
@@ -122,7 +107,7 @@ public class DonatorGUI extends javax.swing.JFrame {
         jTableSearchResults.setAutoCreateRowSorter(true);
         jTableSearchResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"cagano e andano", "roberto FINAL", "Machachutstets",  new Float(1.5320144E7),  new Float(1.5120123E7), "00/00/0000"},
+                {"Título", "Empreendedor", "Local",  new Float(1000000.0),  new Float(0.0), "01/01/2016"},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -157,7 +142,7 @@ public class DonatorGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Project Title", "Entrepreneur", "Locale", "Target", "Achieved", "Expires"
+                "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
             }
         ) {
             Class[] types = new Class [] {
@@ -175,7 +160,7 @@ public class DonatorGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTableSearchResults.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableSearchResults.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTableSearchResults.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableSearchResults.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -192,6 +177,57 @@ public class DonatorGUI extends javax.swing.JFrame {
             jTableSearchResults.getColumnModel().getColumn(4).setPreferredWidth(60);
             jTableSearchResults.getColumnModel().getColumn(5).setPreferredWidth(60);
         }
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected project"));
+
+        jTextAreaProjectDescription.setEditable(false);
+        jTextAreaProjectDescription.setColumns(20);
+        jTextAreaProjectDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextAreaProjectDescription.setRows(5);
+        jTextAreaProjectDescription.setText("Selected project's info [mesmo que em entrepreneurGUI]");
+        jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
+
+        jButtonDonate.setText("Donate to this project!");
+        jButtonDonate.setFocusPainted(false);
+        jButtonDonate.setFocusable(false);
+        jButtonDonate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDonateActionPerformed(evt);
+            }
+        });
+
+        jLabelDonate.setText("Donate amount:");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPaneProjectDescription)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabelDonate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldDonateAmount)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonDonate, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPaneProjectDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonDonate)
+                    .addComponent(jLabelDonate)
+                    .addComponent(jTextFieldDonateAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jTextFieldCredits.setEditable(false);
+        jTextFieldCredits.setText("1000");
+        jTextFieldCredits.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCreditsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,23 +246,19 @@ public class DonatorGUI extends javax.swing.JFrame {
                         .addComponent(jButtonSearch))
                     .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelTitulo))
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelCredits)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextFieldCredits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonGetCredits)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                         .addComponent(jLabelLoggedAs)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonLogout))
-                    .addComponent(jScrollPaneProjectDescription)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelDonate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldDonateAmount)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonDonate)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -238,20 +270,19 @@ public class DonatorGUI extends javax.swing.JFrame {
                     .addComponent(jLabelLoggedAs)
                     .addComponent(jButtonLogout)
                     .addComponent(jLabelCredits)
-                    .addComponent(jButtonGetCredits))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelSearchMode)
-                    .addComponent(jButtonSearch)
-                    .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelDonate)
-                    .addComponent(jTextFieldDonateAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonDonate))
+                    .addComponent(jButtonGetCredits)
+                    .addComponent(jTextFieldCredits, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE)
-                    .addComponent(jScrollPaneProjectDescription))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelSearchMode)
+                            .addComponent(jButtonSearch)
+                            .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -321,6 +352,10 @@ public class DonatorGUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonDonateActionPerformed
 
+    private void jTextFieldCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCreditsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCreditsActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonDonate;
     private javax.swing.JButton jButtonGetCredits;
@@ -332,10 +367,12 @@ public class DonatorGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelLoggedAs;
     private javax.swing.JLabel jLabelSearchMode;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPaneProjectDescription;
     private javax.swing.JScrollPane jScrollPaneSearchResults;
     private javax.swing.JTable jTableSearchResults;
     private javax.swing.JTextArea jTextAreaProjectDescription;
+    private javax.swing.JTextField jTextFieldCredits;
     private javax.swing.JTextField jTextFieldDonateAmount;
     private javax.swing.JTextField jTextFieldSearchParameter;
     // End of variables declaration//GEN-END:variables

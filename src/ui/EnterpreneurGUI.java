@@ -38,15 +38,6 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
 
         jLabelTitulo = new javax.swing.JLabel();
         jLabelLoggedAs = new javax.swing.JLabel();
-        jScrollPaneProjectDescription = new javax.swing.JScrollPane();
-        jTextAreaProjectDescription = new javax.swing.JTextArea();
-        jLabelCurrentProject = new javax.swing.JLabel();
-        jButtonNewOrEdit = new javax.swing.JButton();
-        jTextFieldCurrentProjectName = new javax.swing.JTextField();
-        jButtonSaveEdit = new javax.swing.JButton();
-        jTextFieldCurrentProjectAmount = new javax.swing.JTextField();
-        jButtonPayMonth = new javax.swing.JButton();
-        jButtonWithdraw = new javax.swing.JButton();
         jButtonLogout = new javax.swing.JButton();
         jScrollPaneSearchResults = new javax.swing.JScrollPane();
         jTableSearchResults = new javax.swing.JTable();
@@ -54,54 +45,30 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
         jComboBoxSearchMode = new javax.swing.JComboBox();
         jLabelSearchMode = new javax.swing.JLabel();
         jButtonSearch = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jTextFieldCurrentProjectName = new javax.swing.JTextField();
+        jLabelCurrentProject = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jTextFieldTargetAmount = new javax.swing.JTextField();
+        jTextFieldMinimumDonation = new javax.swing.JTextField();
+        jLabelCurrentProject1 = new javax.swing.JLabel();
+        jButtonCreateProject = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jTextFieldLimitDate = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPaneProjectDescription = new javax.swing.JScrollPane();
+        jTextAreaProjectDescription = new javax.swing.JTextArea();
+        jButtonWithdraw = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelTitulo.setText("MicroEmprestimos");
 
-        jLabelLoggedAs.setText("Logged as FulanoNomeComprido");
-
-        jTextAreaProjectDescription.setColumns(20);
-        jTextAreaProjectDescription.setRows(5);
-        jTextAreaProjectDescription.setText("Edit current project's description");
-        jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
-
-        jLabelCurrentProject.setText("Current Project:");
-
-        jButtonNewOrEdit.setText("New / Delete");
-        jButtonNewOrEdit.setFocusPainted(false);
-        jButtonNewOrEdit.setFocusable(false);
-        jButtonNewOrEdit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonNewOrEditActionPerformed(evt);
-            }
-        });
-
-        jTextFieldCurrentProjectName.setText("Project Name");
-
-        jButtonSaveEdit.setText("Edit Description / Save Edit");
-        jButtonSaveEdit.setFocusPainted(false);
-        jButtonSaveEdit.setFocusable(false);
-
-        jTextFieldCurrentProjectAmount.setText("Requested Amount");
-
-        jButtonPayMonth.setText("Pay monthly fee");
-        jButtonPayMonth.setFocusPainted(false);
-        jButtonPayMonth.setFocusable(false);
-
-        jButtonWithdraw.setText("Withdraw contributions!");
-        jButtonWithdraw.setFocusPainted(false);
-        jButtonWithdraw.setFocusable(false);
-        jButtonWithdraw.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonWithdrawActionPerformed(evt);
-            }
-        });
+        jLabelLoggedAs.setText("Logged as USERNAME");
 
         jButtonLogout.setText("Logout");
         jButtonLogout.setFocusPainted(false);
@@ -115,7 +82,7 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
         jTableSearchResults.setAutoCreateRowSorter(true);
         jTableSearchResults.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"cagano e andano", "roberto FINAL", "Machachutstets",  new Float(1.5320144E7),  new Float(1.5120123E7), "00/00/0000"},
+                {"Título", "Nome", "Local",  new Float(1000000.0),  new Float(0.0), "01/01/2016"},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -150,7 +117,7 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Project Title", "Entrepreneur", "Locale", "Target", "Achieved", "Expires"
+                "Project Title", "Entrepreneur", "Location", "Target", "Achieved", "Expires"
             }
         ) {
             Class[] types = new Class [] {
@@ -168,7 +135,7 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTableSearchResults.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jTableSearchResults.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTableSearchResults.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableSearchResults.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -191,7 +158,7 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My Donations", "Project Title", "Enterpreneur name", "Locale", "Remaining amount", "Achieved amount", "Expiration date" }));
+        jComboBoxSearchMode.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "My projects" }));
         jComboBoxSearchMode.setFocusable(false);
 
         jLabelSearchMode.setText("Search Mode:");
@@ -205,13 +172,136 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Create new project"));
+
+        jTextFieldCurrentProjectName.setText("Project Name");
+
+        jLabelCurrentProject.setText("Project name:");
+
         jLabel1.setText("Target Amount:");
 
-        jLabel2.setText("Project Status: Pending");
+        jTextFieldTargetAmount.setText("Requested Amount");
 
-        jLabel3.setText("Distance to Goal: nnnnnn");
+        jTextFieldMinimumDonation.setText("jTextField1");
+        jTextFieldMinimumDonation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldMinimumDonationActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setText("Monthly Fees Remaining: nn");
+        jLabelCurrentProject1.setText("Minimum donation:");
+
+        jButtonCreateProject.setText("Create project");
+        jButtonCreateProject.setFocusPainted(false);
+        jButtonCreateProject.setFocusable(false);
+        jButtonCreateProject.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCreateProjectActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Limit date:");
+
+        jTextFieldLimitDate.setText("01/02/2016");
+        jTextFieldLimitDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldLimitDateActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Description:");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCreateProject, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 14, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabelCurrentProject)
+                                    .addComponent(jLabelCurrentProject1)
+                                    .addComponent(jLabel6))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldTargetAmount, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldMinimumDonation, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldCurrentProjectName, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldLimitDate)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))))
+                .addGap(0, 0, 0))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldCurrentProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCurrentProject))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldMinimumDonation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelCurrentProject1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldTargetAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextFieldLimitDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonCreateProject)
+                .addGap(0, 0, 0))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Selected project"));
+
+        jTextAreaProjectDescription.setEditable(false);
+        jTextAreaProjectDescription.setColumns(20);
+        jTextAreaProjectDescription.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextAreaProjectDescription.setRows(5);
+        jTextAreaProjectDescription.setText("Project name:\nMinimum donation:\nTarget amount:\nLimit date:\nDescription:\nStatus: [open or done]");
+        jScrollPaneProjectDescription.setViewportView(jTextAreaProjectDescription);
+
+        jButtonWithdraw.setText("Withdraw contributions!");
+        jButtonWithdraw.setFocusPainted(false);
+        jButtonWithdraw.setFocusable(false);
+        jButtonWithdraw.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonWithdrawActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPaneProjectDescription)
+            .addComponent(jButtonWithdraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jScrollPaneProjectDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonWithdraw))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -221,93 +311,52 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelLoggedAs)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonLogout))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelSearchMode)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextFieldSearchParameter)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonSearch)
-                                .addGap(3, 3, 3)))
-                        .addGap(10, 10, 10)
+                                .addComponent(jButtonSearch))
+                            .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 427, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel4))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jButtonWithdraw, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButtonPayMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(22, 22, 22)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabelCurrentProject)
-                                            .addComponent(jLabel1))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldCurrentProjectName)
-                                            .addComponent(jButtonNewOrEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldCurrentProjectAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonSaveEdit))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPaneProjectDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelLoggedAs)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonLogout)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelTitulo)
-                    .addComponent(jLabelLoggedAs)
-                    .addComponent(jButtonLogout))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelSearchMode)
-                    .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonSearch))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonLogout)
+                        .addComponent(jLabelLoggedAs)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCurrentProject)
-                            .addComponent(jTextFieldCurrentProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jButtonNewOrEdit))
+                            .addComponent(jLabelSearchMode)
+                            .addComponent(jComboBoxSearchMode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldSearchParameter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSearch))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(jTextFieldCurrentProjectAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(jButtonWithdraw))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jButtonPayMonth)
-                            .addComponent(jButtonSaveEdit))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPaneProjectDescription))
-                    .addComponent(jScrollPaneSearchResults, javax.swing.GroupLayout.DEFAULT_SIZE, 574, Short.MAX_VALUE))
+                        .addComponent(jScrollPaneSearchResults)))
                 .addContainerGap())
         );
 
@@ -342,36 +391,48 @@ public class EnterpreneurGUI extends javax.swing.JFrame {
             //}
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
-    private void jButtonNewOrEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNewOrEditActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonNewOrEditActionPerformed
-
     private void jButtonWithdrawActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonWithdrawActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonWithdrawActionPerformed
 
+    private void jTextFieldLimitDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldLimitDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldLimitDateActionPerformed
+
+    private void jButtonCreateProjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCreateProjectActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonCreateProjectActionPerformed
+
+    private void jTextFieldMinimumDonationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMinimumDonationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldMinimumDonationActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCreateProject;
     private javax.swing.JButton jButtonLogout;
-    private javax.swing.JButton jButtonNewOrEdit;
-    private javax.swing.JButton jButtonPayMonth;
-    private javax.swing.JButton jButtonSaveEdit;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonWithdraw;
     private javax.swing.JComboBox jComboBoxSearchMode;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelCurrentProject;
+    private javax.swing.JLabel jLabelCurrentProject1;
     private javax.swing.JLabel jLabelLoggedAs;
     private javax.swing.JLabel jLabelSearchMode;
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPaneProjectDescription;
     private javax.swing.JScrollPane jScrollPaneSearchResults;
     private javax.swing.JTable jTableSearchResults;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextAreaProjectDescription;
-    private javax.swing.JTextField jTextFieldCurrentProjectAmount;
     private javax.swing.JTextField jTextFieldCurrentProjectName;
+    private javax.swing.JTextField jTextFieldLimitDate;
+    private javax.swing.JTextField jTextFieldMinimumDonation;
     private javax.swing.JTextField jTextFieldSearchParameter;
+    private javax.swing.JTextField jTextFieldTargetAmount;
     // End of variables declaration//GEN-END:variables
 }
