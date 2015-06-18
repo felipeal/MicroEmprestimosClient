@@ -5,7 +5,6 @@
  */
 package ui;
 
-import java.util.Arrays;
 import servercommunication.Communicator;
 import servercommunication.ServerException;
 import javafx.util.Pair;
@@ -20,43 +19,43 @@ public class WelcomeGUI extends javax.swing.JFrame {
 
     /**
      * Creates new form Welcome
-	 * @param communicator
+     * @param communicator
      */
     public WelcomeGUI(Communicator communicator) {
         this.communicator = communicator;
         initComponents();
-		clearWarnLabels();
+        clearWarnLabels();
     }
-	
-	private void clearWarnLabels() {
-		jLabelWarnID.setText("");
-		jLabelWarnPassword.setText("");
-		jLabelWarnFullName.setText("");
-		jLabelWarnLocation.setText("");
-	}
-	
-	private void clearInputFields() {
-		jTextFieldUsername.setText("");
-		jPasswordField.setText("");
-		jTextFieldFullName.setText("");
-		jTextFieldLocation.setText("");
-	}
-	
-	private boolean checkInputFields(String action) {
-		clearWarnLabels();
-		
-		if ("".equals(jTextFieldUsername.getText()))
-			jLabelWarnID.setText("This field is required!");
-		else if (jPasswordField.getPassword().length == 0)
-			jLabelWarnPassword.setText("This field is required!");
-		else if (action.contains("register") && "".equals(jTextFieldFullName.getText()))
-			jLabelWarnFullName.setText("This field is required!");
-		else if (action.equals("registerEntpr") && "".equals(jTextFieldLocation.getText()))
-			jLabelWarnLocation.setText("This field is required!");
-		else return true;
-		return false;
-	}
-	
+    
+    private void clearWarnLabels() {
+        jLabelWarnID.setText("");
+        jLabelWarnPassword.setText("");
+        jLabelWarnFullName.setText("");
+        jLabelWarnLocation.setText("");
+    }
+    
+    private void clearInputFields() {
+        jTextFieldUsername.setText("");
+        jPasswordField.setText("");
+        jTextFieldFullName.setText("");
+        jTextFieldLocation.setText("");
+    }
+    
+    private boolean checkInputFields(String action) {
+        clearWarnLabels();
+        
+        if ("".equals(jTextFieldUsername.getText()))
+            jLabelWarnID.setText("This field is required!");
+        else if (jPasswordField.getPassword().length == 0)
+            jLabelWarnPassword.setText("This field is required!");
+        else if (action.contains("register") && "".equals(jTextFieldFullName.getText()))
+            jLabelWarnFullName.setText("This field is required!");
+        else if (action.equals("registerEntpr") && "".equals(jTextFieldLocation.getText()))
+            jLabelWarnLocation.setText("This field is required!");
+        else return true;
+        return false;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,11 +124,12 @@ public class WelcomeGUI extends javax.swing.JFrame {
         });
 
         jButtonLogAdmn.setText("Log as Administrator");
+        jButtonLogAdmn.setEnabled(false);
         jButtonLogAdmn.setFocusPainted(false);
         jButtonLogAdmn.setFocusable(false);
 
         jLabelTitulo.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        jLabelTitulo.setText("MicroEmprestimos");
+        jLabelTitulo.setText("MicroEmpréstimos");
 
         jLabelUsername.setText("Username");
 
@@ -141,13 +141,13 @@ public class WelcomeGUI extends javax.swing.JFrame {
 
         jLabelRegister.setText("(fill in all 4 fields)");
 
-        jLabelWarnID.setText("tab4");
+        jLabelWarnID.setText("message");
 
-        jLabelWarnPassword.setText("melhor");
+        jLabelWarnPassword.setText("message");
 
-        jLabelWarnFullName.setText("identação");
+        jLabelWarnFullName.setText("message");
 
-        jLabelWarnLocation.setText("ever");
+        jLabelWarnLocation.setText("message");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -175,9 +175,9 @@ public class WelcomeGUI extends javax.swing.JFrame {
                         .addComponent(jButtonRegEntpr)
                         .addGap(282, 282, 282))))
             .addGroup(layout.createSequentialGroup()
+                .addGap(360, 360, 360)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(360, 360, 360)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelPassword)
@@ -192,7 +192,6 @@ public class WelcomeGUI extends javax.swing.JFrame {
                             .addComponent(jLabelWarnID)
                             .addComponent(jLabelWarnPassword)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(360, 360, 360)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelFullName)
                             .addComponent(jLabelLocation))
@@ -249,50 +248,50 @@ public class WelcomeGUI extends javax.swing.JFrame {
 
     private void jButtonLogDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogDonActionPerformed
         clearWarnLabels();
-		
-		if (checkInputFields("login"))
-			try {
-				Pair<String,Float> userData = communicator.loginDonator(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()));
-				new DonatorGUI(this, communicator,userData.getKey(),userData.getValue().toString()).setVisible(true);
-				clearInputFields();
-				this.setVisible(false);
-			} catch (ServerException e) {
-				jLabelWarnID.setText("Invalid ID and Password combination!");
-			}
+        
+        if (checkInputFields("login"))
+            try {
+                Pair<String,Float> userData = communicator.loginDonator(jTextFieldUsername.getText(),String.valueOf(jPasswordField.getPassword()));
+                new DonatorGUI(this, communicator,userData.getKey(),userData.getValue().toString()).setVisible(true);
+                clearInputFields();
+                this.setVisible(false);
+            } catch (ServerException e) {
+                jLabelWarnID.setText("Invalid ID and Password combination!");
+            }
     }//GEN-LAST:event_jButtonLogDonActionPerformed
 
     private void jButtonLogEntprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogEntprActionPerformed
-		if (checkInputFields("login"))
-			try {
-				String username = communicator.loginEntrepreneur(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()));
-				new EnterpreneurGUI(this, communicator,username).setVisible(true);
-				clearInputFields();
-				this.setVisible(false);
-			} catch (ServerException e) {
-				jLabelWarnID.setText("Invalid ID and Password combination!");
-			}
+        if (checkInputFields("login"))
+            try {
+                String username = communicator.loginEntrepreneur(jTextFieldUsername.getText(),String.valueOf(jPasswordField.getPassword()));
+                new EntrepreneurGUI(this, communicator,username).setVisible(true);
+                clearInputFields();
+                this.setVisible(false);
+            } catch (ServerException e) {
+                jLabelWarnID.setText("Invalid ID and Password combination!");
+            }
     }//GEN-LAST:event_jButtonLogEntprActionPerformed
 
     private void jButtonRegDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegDonActionPerformed
-		if (checkInputFields("registerDon"))
-			try {
-				communicator.registerDonator(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()),jTextFieldFullName.getText());
-				clearInputFields();
-				jLabelWarnID.setText("Registration was a sucess!");
-			} catch (ServerException e) {
-				jLabelWarnID.setText("Invalid ID and Password combination!");
-			}
+        if (checkInputFields("registerDon"))
+            try {
+                communicator.registerDonator(jTextFieldUsername.getText(),String.valueOf(jPasswordField.getPassword()),jTextFieldFullName.getText());
+                clearInputFields();
+                jLabelWarnID.setText("Registration was a sucess!");
+            } catch (ServerException e) {
+                jLabelWarnID.setText("Invalid ID and Password combination!");
+            }
     }//GEN-LAST:event_jButtonRegDonActionPerformed
 
     private void jButtonRegEntprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegEntprActionPerformed
-		if (checkInputFields("registerEntpr"))
-			try {
-				communicator.registerEntrepreneur(jTextFieldUsername.getText(),Arrays.toString(jPasswordField.getPassword()),jTextFieldFullName.getText(),jTextFieldLocation.getText());
-				clearInputFields();
-				jLabelWarnID.setText("Registration was a sucess!");
-			} catch (ServerException e) {
-				jLabelWarnID.setText("Invalid ID and Password combination!");
-			}
+        if (checkInputFields("registerEntpr"))
+            try {
+                communicator.registerEntrepreneur(jTextFieldUsername.getText(),String.valueOf(jPasswordField.getPassword()),jTextFieldFullName.getText(),jTextFieldLocation.getText());
+                clearInputFields();
+                jLabelWarnID.setText("Registration was a sucess!");
+            } catch (ServerException e) {
+                jLabelWarnID.setText("Invalid ID and Password combination!");
+            }
     }//GEN-LAST:event_jButtonRegEntprActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -20,7 +20,7 @@ import servercommunication.ServerException;
  * @author Giovani
  */
 public class DonatorGUI extends javax.swing.JFrame {
-	
+    
     private final Communicator communicator;
     private final WelcomeGUI welcomeGUI;
     private ArrayList<ArrayList<Object>> projects;
@@ -309,23 +309,23 @@ public class DonatorGUI extends javax.swing.JFrame {
 
     private void jButtonLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLogoutActionPerformed
         this.welcomeGUI.setVisible(true);
-		this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }//GEN-LAST:event_jButtonLogoutActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-	listProjects();
+    listProjects();
     }//GEN-LAST:event_jButtonSearchActionPerformed
 
     private void jTableSearchResultsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTableSearchResultsPropertyChange
-//		try {
-//				// TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
-//				if (jListSearchResults.getSelectedIndex() == -1)
-//					jTextAreaProjectDescription.setText("Selected project description");
-//				else
-//					jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
-//			} catch (ServerException ex) {
-//				JOptionPane.showMessageDialog(null, ex.getMessage());
-//			}
+//        try {
+//                // TODO add your handling code here: PEDIR PROJECT E PRINTAR NA ÁREA DE TEXTO
+//                if (jListSearchResults.getSelectedIndex() == -1)
+//                    jTextAreaProjectDescription.setText("Selected project description");
+//                else
+//                    jTextAreaProjectDescription.setText(communicator.getProject(projects.get(jListSearchResults.getSelectedIndex()).getValue()));
+//            } catch (ServerException ex) {
+//                JOptionPane.showMessageDialog(null, ex.getMessage());
+//            }
     }//GEN-LAST:event_jTableSearchResultsPropertyChange
 
     private void jButtonDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDonateActionPerformed
@@ -345,16 +345,16 @@ public class DonatorGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonDonateActionPerformed
 
     private void jButtonGetCreditsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGetCreditsActionPerformed
-		try {
-			Float creds = Float.parseFloat(JOptionPane.showInputDialog(rootPane, "Define the size of purchase", "Credits Purchase", JOptionPane.INFORMATION_MESSAGE, null, null, "").toString());
-			communicator.buyCredits(creds);
-			creds += Float.parseFloat(jTextFieldCredits.getText());
-			jTextFieldCredits.setText(creds.toString());
-		} catch (NumberFormatException nfex) {
-			JOptionPane.showMessageDialog(null, "You must type a proper number", "Input Error", JOptionPane.ERROR_MESSAGE);
-		} catch (ServerException ex) {
-			JOptionPane.showMessageDialog(null, ex.getMessage());
-		}
+        try {
+            Float creds = Float.parseFloat(JOptionPane.showInputDialog(rootPane, "Define the size of purchase", "Credits Purchase", JOptionPane.INFORMATION_MESSAGE, null, null, "").toString());
+            communicator.buyCredits(creds);
+            creds += Float.parseFloat(jTextFieldCredits.getText());
+            jTextFieldCredits.setText(creds.toString());
+        } catch (NumberFormatException nfex) {
+            JOptionPane.showMessageDialog(null, "You must type a proper number", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } catch (ServerException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
     }//GEN-LAST:event_jButtonGetCreditsActionPerformed
 
     private void jTableSearchResultsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableSearchResultsMouseClicked

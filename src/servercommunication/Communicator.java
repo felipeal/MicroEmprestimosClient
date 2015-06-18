@@ -5,7 +5,6 @@
  */
 package servercommunication;
 
-import java.awt.List;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.InetAddress;
